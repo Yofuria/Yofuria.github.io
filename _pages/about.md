@@ -69,4 +69,5 @@ Siyuan Qi, Bangcheng Yang, Kailin Jiang, **Xiaobo Wang**, Jiaqi Li, Yifan Zhong,
 - *2020.09 - 2024.06*, Beihang University, bachelor's degree. 
 
 # 💻 Internships
+- *2025.07 - now*, BIGAI, Beijing, China.
 - *2023.10 - 2024.01*, ByteDance, Beijing, China.
