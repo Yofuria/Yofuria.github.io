@@ -6,8 +6,8 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "Lorem ipsum"
-description              : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. "
+title                    : "Xiaobo Wang"
+description              : ""
 repository               : "Yofuria/Yofuria.github.io"
 google_scholar_stats_use_cdn : true
 
@@ -22,7 +22,7 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 # Site Author
 author:
   name             : "Xiaobo Wang"
-  avatar           : "images/android-chrome-512x512.png"
+  avatar           : "images/photo.jpg"
   bio              : "University of Science and Technology of China"
   location         : "Beijing, China"
   employer         :
