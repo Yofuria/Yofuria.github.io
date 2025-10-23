@@ -23,13 +23,14 @@ My research interest includes reward modeling, LLMs alignment and continual lear
 
 
 # 🔥 News
+- *2025.10*：&nbsp;🎉🎉 I will serve as reviewer for ACL ARR October.
 - *2025.08*: &nbsp;🎉🎉 <a href='https://www.arxiv.org/abs/2509.10515'>UAPO</a> has been accepted by EMNLP 2025!
 - *2025.05*: &nbsp;🎉🎉 <a href='https://arxiv.org/abs/2505.16475'>ReflectEvo</a> has been accepted by ACL 2025!
 - *2025.01*: &nbsp;🎉🎉 <a href='https://arxiv.org/abs/2406.11194'>ICE</a> has been accepted by ICLR 2025!
 
 # 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/uapo.png' alt="uapo" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Adaptive Preference Optimization with Uncertainty-aware Utility Anchor](https://www.arxiv.org/abs/2509.10515)
@@ -39,7 +40,7 @@ My research interest includes reward modeling, LLMs alignment and continual lear
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/reflectevo.jpg' alt="reflectevo" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [ReflectEvo: Improving Meta Introspection of Small LLMs by Learning Self-Reflection](https://arxiv.org/abs/2505.16475)
@@ -49,12 +50,12 @@ Jiaqi Li, Xinyi Dong, Yang Liu, Zhizhuo Yang, Quansen Wang, **Xiaobo Wang**, Son
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2025</div><img src='images/ice.pdf' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2025</div><img src='images/ice.jpg' alt="ice" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [In-Context Editing: Learning Knowledge from Self-Induced Distributions](https://arxiv.org/abs/2406.11194)
 
-Siyuan Qi*, Bangcheng Yang*, Kailin Jiang*, **Xiaobo Wang**, Jiaqi Li, Yifan Zhong, Yaodong Yang, Zilong Zheng
+Siyuan Qi\*, Bangcheng Yang\*, Kailin Jiang\*, **Xiaobo Wang**, Jiaqi Li, Yifan Zhong, Yaodong Yang, Zilong Zheng
 
 </div>
 </div>
