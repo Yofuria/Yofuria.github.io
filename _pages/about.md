@@ -17,7 +17,7 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I am a second-year PhD student at the University of Science and Technology of China, currently pursuing research as an intern at the Beijing Institute for General Artificial Intelligence under the guidance of Professor Qi Liu and Researcher Zilong Zheng. I hold a bachelor's degree from Beihang University.
+I am a second-year PhD student at the University of Science and Technology of China, currently pursuing research as an intern at the Beijing Institute for General Artificial Intelligence under the guidance of Professor <a href='http://staff.ustc.edu.cn/~qiliuql/'>Qi Liu</a> and Researcher <a href='https://zilongzheng.github.io/'>Zilong Zheng</a>. I hold a bachelor's degree from Beihang University.
 
 My research interest includes reward modeling, LLMs alignment and continual learning. <a href='https://scholar.google.com/citations?user=GNO0HzAAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>
 
