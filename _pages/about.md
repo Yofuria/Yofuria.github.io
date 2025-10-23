@@ -49,12 +49,12 @@ Jiaqi Li, Xinyi Dong, Yang Liu, Zhizhuo Yang, Quansen Wang, **Xiaobo Wang**, Son
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2025</div><img src='images/ice.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [In-Context Editing: Learning Knowledge from Self-Induced Distributions](https://arxiv.org/abs/2406.11194)
 
-Siyuan Qi, Bangcheng Yang, Kailin Jiang, **Xiaobo Wang**, Jiaqi Li, Yifan Zhong, Yaodong Yang, Zilong Zheng
+Siyuan Qi*, Bangcheng Yang*, Kailin Jiang*, **Xiaobo Wang**, Jiaqi Li, Yifan Zhong, Yaodong Yang, Zilong Zheng
 
 </div>
 </div>
