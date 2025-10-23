@@ -23,7 +23,7 @@ My research interest includes reward modeling, LLMs alignment and continual lear
 
 
 # 🔥 News
-- *2025.10*：&nbsp;🎉🎉 I will serve as reviewer for ACL ARR October.
+- *2025.10*: &nbsp;🎉🎉 I will serve as reviewer for ACL ARR October.
 - *2025.08*: &nbsp;🎉🎉 <a href='https://www.arxiv.org/abs/2509.10515'>UAPO</a> has been accepted by EMNLP 2025!
 - *2025.05*: &nbsp;🎉🎉 <a href='https://arxiv.org/abs/2505.16475'>ReflectEvo</a> has been accepted by ACL 2025!
 - *2025.01*: &nbsp;🎉🎉 <a href='https://arxiv.org/abs/2406.11194'>ICE</a> has been accepted by ICLR 2025!
