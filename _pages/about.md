@@ -72,6 +72,16 @@ Siyuan Qi\*, Bangcheng Yang\*, Kailin Jiang\*, **Xiaobo Wang**, Jiaqi Li, Yifan 
 </div>
 </div>
 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='images/ram.png' alt="RAM framework overview" width="100%" loading="lazy"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[RAM: Towards an Ever-Improving Memory System by Learning from Communications](https://arxiv.org/abs/2404.12045)
+
+Jiaqi Li, **Xiaobo Wang**, Wentao Ding, Zihao Wang, Yipeng Kang, Zixia Jia, Zilong Zheng
+
+</div>
+</div>
+
 
 <!-- # 🎖 Honors and Awards
 - *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
