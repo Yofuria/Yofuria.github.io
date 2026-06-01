@@ -142,20 +142,28 @@ h1:before, .anchor:before {
    so a long list no longer stretches the whole page. */
 .paper-scroll {
     max-height: 460px;
-    overflow-y: auto;
+    overflow-y: scroll;          /* always show the scroll track */
+    scrollbar-gutter: stable;
     overscroll-behavior: contain;
-    padding: 2px 14px 2px 4px;
+    padding: 0.5em 0.9em;
     margin-bottom: 1.5em;
+    border: 1px solid #e6e7ee;
+    border-radius: 12px;
+    background: #fcfcfd;
     scrollbar-width: thin;
-    scrollbar-color: #cfd3da transparent;
+    scrollbar-color: #b3b9c6 #eef0f4;
 }
-.paper-scroll::-webkit-scrollbar { width: 8px; }
+.paper-scroll::-webkit-scrollbar { width: 10px; }
 .paper-scroll::-webkit-scrollbar-thumb {
-    background: #cfd3da;
+    background: #b3b9c6;
+    border-radius: 8px;
+    border: 2px solid #eef0f4;
+}
+.paper-scroll::-webkit-scrollbar-thumb:hover { background: #969daa; }
+.paper-scroll::-webkit-scrollbar-track {
+    background: #eef0f4;
     border-radius: 8px;
 }
-.paper-scroll::-webkit-scrollbar-thumb:hover { background: #b7bcc6; }
-.paper-scroll::-webkit-scrollbar-track { background: transparent; }
 .paper-scroll .paper-box { margin-bottom: 1em; }
 .paper-scroll .paper-box:last-child { margin-bottom: 0; }
 
