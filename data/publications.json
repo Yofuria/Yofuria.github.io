@@ -39,6 +39,7 @@
     "showOnHomepage": true,
     "featuredOrder": 3,
     "venue": "Under Review",
+    "year": "2026",
     "thumbnail": "assets/publications/save/thumb.png",
     "tags": [
       { "text": "Paper", "link": "https://arxiv.org/abs/2605.30888" },
@@ -68,6 +69,7 @@
     "showOnHomepage": true,
     "featuredOrder": 5,
     "venue": "Under Review",
+    "year": "2024",
     "thumbnail": "assets/publications/ram/thumb.png",
     "tags": [
       { "text": "Paper", "link": "https://arxiv.org/abs/2404.12045" },

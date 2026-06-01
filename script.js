@@ -139,9 +139,10 @@ function loadHonors() {
 
 function loadPublications() {
     const featuredContainer = document.getElementById('featured-publications-container');
+    const preprintContainer = document.getElementById('featured-preprints-container');
     const allContainer = document.getElementById('all-publications-container');
 
-    if (!featuredContainer && !allContainer) {
+    if (!featuredContainer && !preprintContainer && !allContainer) {
         return;
     }
 
@@ -149,10 +150,17 @@ function loadPublications() {
         .then(handleJsonResponse)
         .then(publications => {
             if (featuredContainer) {
-                const featured = publications
-                    .filter(pub => pub.showOnHomepage)
-                    .sort(compareFeaturedPublications);
-                renderFeaturedPublications(featuredContainer, featured);
+                const accepted = publications
+                    .filter(pub => String(pub.type || '').toLowerCase() === 'accepted')
+                    .sort(compareAllPublications);
+                renderFeaturedPublications(featuredContainer, accepted);
+            }
+
+            if (preprintContainer) {
+                const preprints = publications
+                    .filter(pub => String(pub.type || '').toLowerCase() !== 'accepted')
+                    .sort(compareAllPublications);
+                renderFeaturedPublications(preprintContainer, preprints);
             }
 
             if (allContainer) {
@@ -161,7 +169,7 @@ function loadPublications() {
         })
         .catch(error => {
             console.error('Error loading publications data:', error);
-            const container = featuredContainer || allContainer;
+            const container = featuredContainer || preprintContainer || allContainer;
             if (container) {
                 container.innerHTML = '<p>Failed to load publications.</p>';
             }
@@ -201,6 +209,11 @@ function renderAllPublicationsPage(container, publications) {
         filtered = filtered.filter(pub => String(pub.type || '').toLowerCase() === 'accepted');
         if (filterIndicator) {
             filterIndicator.textContent = '(Accepted)';
+        }
+    } else if (filter === 'preprint') {
+        filtered = filtered.filter(pub => String(pub.type || '').toLowerCase() !== 'accepted');
+        if (filterIndicator) {
+            filterIndicator.textContent = '(Preprints)';
         }
     } else if (filterIndicator) {
         filterIndicator.textContent = '';
@@ -491,21 +504,17 @@ function updateFilterButtons(filter) {
         link.classList.remove('active');
     });
 
+    let activeId = 'filter-all';
     if (filter === 'first-author') {
-        const element = document.getElementById('filter-first');
-        if (element) {
-            element.classList.add('active');
-        }
+        activeId = 'filter-first';
     } else if (filter === 'accepted') {
-        const element = document.getElementById('filter-accepted');
-        if (element) {
-            element.classList.add('active');
-        }
-    } else {
-        const element = document.getElementById('filter-all');
-        if (element) {
-            element.classList.add('active');
-        }
+        activeId = 'filter-accepted';
+    } else if (filter === 'preprint') {
+        activeId = 'filter-preprint';
+    }
+    const element = document.getElementById(activeId);
+    if (element) {
+        element.classList.add('active');
     }
 }
 
