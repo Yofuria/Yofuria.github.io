@@ -30,6 +30,8 @@ My research interest includes reward modeling, LLMs alignment and continual lear
 
 # 📝 Publications 
 
+<div class="paper-scroll">
+
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">TMLR</div><img src='images/memory.png' alt="The AI Hippocampus framework overview" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -80,7 +82,11 @@ Siyuan Qi\*, Bangcheng Yang\*, Kailin Jiang\*, **Xiaobo Wang**, Jiaqi Li, Yifan 
 </div>
 </div>
 
+</div>
+
 # 📄 Preprints
+
+<div class="paper-scroll">
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='images/save.png' alt="SAVE framework overview" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
@@ -97,9 +103,11 @@ Siyuan Qi\*, Bangcheng Yang\*, Kailin Jiang\*, **Xiaobo Wang**, Jiaqi Li, Yifan 
 
 [RAM: Towards an Ever-Improving Memory System by Learning from Communications](https://arxiv.org/abs/2404.12045)
 
-Jiaqi Li, **Xiaobo Wang**, Wentao Ding, Zihao Wang, Yipeng Kang, Zixia Jia, Zilong Zheng
+Jiaqi Li\*, **Xiaobo Wang\***, Wentao Ding, Zihao Wang, Yipeng Kang, Zixia Jia, Zilong Zheng
 
 </div>
+</div>
+
 </div>
 
 
