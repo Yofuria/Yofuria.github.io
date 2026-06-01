@@ -199,6 +199,31 @@ details summary {
     transform: translateY(-1px);
 }
 
+/* Brand logos that have no icon font (rendered via CSS mask so they
+   inherit the current text color, including hover). */
+.brand-icon {
+    display: inline-block;
+    width: 1.05rem;
+    height: 1.05rem;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+.brand-icon-scholar {
+    -webkit-mask-image: url(assets/icons/google-scholar.svg);
+    mask-image: url(assets/icons/google-scholar.svg);
+}
+
+.brand-icon-hf {
+    -webkit-mask-image: url(assets/icons/huggingface.svg);
+    mask-image: url(assets/icons/huggingface.svg);
+}
+
 .timeline-item {
     align-items: flex-start;
 }
