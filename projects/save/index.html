@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAVE: On-Policy Feedback for Reward Model Self-Supervised Improvement</title>
+  <meta name="description" content="The Flip Side of RLHF: On-Policy Feedback for Reward Model Self-Supervised Improvement (SAVE).">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="SAVE — On-Policy Feedback for Reward Model Self-Supervised Improvement">
+  <meta property="og:description" content="The Flip Side of RLHF: a framework that turns on-policy responses into self-supervised reward feedback.">
+  <meta property="og:image" content="static/images/teaser.png">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css">
+
+  <style>
+    :root{
+      --ink:#1f2733;
+      --muted:#5b6675;
+      --accent:#0064d2;
+      --accent-2:#00357a;
+      --line:#e8eaf0;
+      --bg:#ffffff;
+      --soft:#f6f8fb;
+      --max:980px;
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:var(--accent);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px;}
+
+    /* Hero */
+    header.hero{
+      padding:64px 0 28px;
+      text-align:center;
+      background:linear-gradient(180deg,#fbfcfe 0%,#ffffff 100%);
+      border-bottom:1px solid var(--line);
+    }
+    .venue{
+      display:inline-block;
+      font-size:.8rem;font-weight:600;letter-spacing:.5px;
+      color:#fff;background:linear-gradient(135deg,var(--accent-2),var(--accent));
+      padding:.32em .9em;border-radius:999px;margin-bottom:18px;
+    }
+    h1.title{
+      font-size:clamp(1.7rem,3.4vw,2.6rem);
+      font-weight:800;line-height:1.2;letter-spacing:-.02em;
+      margin:.1em auto .1em;max-width:18ch;
+    }
+    .subtitle{color:var(--muted);font-size:1.02rem;margin:.2em 0 1.1em;}
+    .authors{font-size:1.08rem;font-weight:500;margin:.6em 0;}
+    .authors a{color:var(--ink);}
+    .authors .me a{color:var(--accent);font-weight:700;}
+    .affil{color:var(--muted);font-size:.95rem;margin:.2em 0 0;}
+
+    /* Buttons */
+    .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:26px 0 6px;}
+    .btn{
+      display:inline-flex;align-items:center;gap:.5em;
+      padding:.6em 1.15em;border-radius:999px;
+      font-size:.96rem;font-weight:600;
+      background:var(--ink);color:#fff;border:1px solid var(--ink);
+      transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,24,40,.16);text-decoration:none;}
+    .btn.alt{background:#fff;color:var(--ink);border-color:#d7dbe3;}
+    .btn.alt:hover{border-color:#b9bfca;}
+    .btn.disabled{background:#eef0f4;color:#9aa3b2;border-color:#e3e6ec;pointer-events:none;}
+
+    /* Sections */
+    section{padding:42px 0;border-bottom:1px solid var(--line);}
+    section:last-of-type{border-bottom:none;}
+    h2{font-size:1.5rem;font-weight:700;letter-spacing:-.01em;margin:0 0 .6em;text-align:center;}
+    .abstract p{font-size:1.05rem;color:#2b3340;max-width:760px;margin:0 auto;text-align:justify;}
+
+    /* Figure */
+    figure{margin:0;text-align:center;}
+    .teaser img,figure img{max-width:100%;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,.08);}
+    figcaption{color:var(--muted);font-size:.92rem;margin-top:12px;max-width:820px;margin-left:auto;margin-right:auto;}
+    figcaption b{color:var(--ink);}
+
+    /* Approach list */
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:860px;margin:22px auto 0;}
+    .step{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+    .step h3{margin:.1em 0 .35em;font-size:1.02rem;}
+    .step p{margin:0;color:var(--muted);font-size:.95rem;}
+    .step .n{font-size:.8rem;font-weight:700;color:var(--accent);}
+
+    /* BibTeX */
+    .bibtex{position:relative;max-width:820px;margin:0 auto;}
+    pre{
+      background:#0f1830;color:#e6ecf5;border-radius:12px;
+      padding:20px 18px;overflow-x:auto;font-size:.88rem;line-height:1.55;
+      font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    }
+    .copy{
+      position:absolute;top:10px;right:10px;
+      background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);
+      border-radius:8px;padding:.35em .7em;font-size:.82rem;cursor:pointer;font-weight:600;
+    }
+    .copy:hover{background:rgba(255,255,255,.22);}
+
+    footer{padding:30px 0 50px;text-align:center;color:var(--muted);font-size:.88rem;}
+    footer a{color:var(--muted);text-decoration:underline;}
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="venue">Preprint · arXiv 2026</span>
+      <h1 class="title">The Flip Side of RLHF: On-Policy Feedback for Reward Model Self-Supervised Improvement</h1>
+      <p class="subtitle"><b>SAVE</b> — Self-supervised reward model improvement via Value-Anchored On-policy feedback</p>
+
+      <p class="authors">
+        <span class="me"><a href="https://yofuria.github.io/">Xiaobo Wang</a></span>,
+        Tong Wu,
+        Min Tang,
+        Jiaqi Li,
+        <a href="http://staff.ustc.edu.cn/~qiliuql/">Qi Liu</a>,
+        <a href="https://zilongzheng.github.io/">Zilong Zheng</a>
+      </p>
+      <p class="affil">University of Science and Technology of China · Beijing Institute for General Artificial Intelligence</p>
+
+      <div class="btns">
+        <a class="btn" href="https://arxiv.org/abs/2605.30888"><i class="ai ai-arxiv"></i> arXiv</a>
+        <a class="btn alt" href="https://arxiv.org/pdf/2605.30888"><i class="fas fa-file-pdf"></i> PDF</a>
+        <!-- Replace href="#" with your code repository URL when available -->
+        <a class="btn disabled" href="#"><i class="fab fa-github"></i> Code (soon)</a>
+        <a class="btn alt" href="#bibtex"><i class="fas fa-quote-right"></i> BibTeX</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="teaser">
+    <div class="wrap">
+      <figure>
+        <img src="static/images/teaser.png" alt="SAVE framework overview">
+        <figcaption><b>Overview of SAVE.</b> The policy generates on-policy responses; a value head provides a
+          prompt-specific anchor to grade them into positive / negative feedback (ambiguous samples are filtered out),
+          and the reward model is improved with a contrastive objective before the next round of policy optimization.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="abstract">
+    <div class="wrap">
+      <h2>Abstract</h2>
+      <p>Building strong reward models (RMs) for language model alignment is bottlenecked by the cost and difficulty of
+        acquiring diverse and reliable preference data from human annotation or judge models. It is dramatically worse as
+        the policy evolves beyond the static RM training. Therefore, we propose <b>SAVE</b> (Self-supervised reward model
+        improvement via Value-Anchored On-policy feedback), a framework that grades on-policy responses as feedback by
+        using the value function for on-policy RM training. SAVE naturally converts the reward-graded on-policy responses
+        into supervision with a prompt-specific value head as an adaptive anchor. It computes RM advantages and filters
+        ambiguous samples to update the RM via a contrastive objective. The effectiveness of SAVE for enhancing RM
+        training is strongly validated through rigorous empirical evaluation across six diverse benchmarks. It achieves
+        outperforming results across all datasets while maintaining consistent improvements across three RL algorithms
+        (GRPO, RLOO, GSPO) and different policy backbones.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>How SAVE works</h2>
+      <div class="steps">
+        <div class="step"><div class="n">STEP 1</div><h3>On-policy generation</h3><p>The current policy rolls out a group of candidate responses for each prompt.</p></div>
+        <div class="step"><div class="n">STEP 2</div><h3>Adaptive feedback filtering</h3><p>A shared backbone produces a response reward and a prompt value; the RM advantage separates positive / negative samples and filters ambiguous ones.</p></div>
+        <div class="step"><div class="n">STEP 3</div><h3>Self-supervised RM update</h3><p>A contrastive objective pushes positives above and negatives below the value anchor, while the value head is fit to the unbiased value estimate.</p></div>
+        <div class="step"><div class="n">STEP 4</div><h3>Policy optimization</h3><p>The improved RM scores fresh candidates and a standard RL algorithm (RLOO, GRPO, GSPO) updates the policy.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bibtex">
+    <div class="wrap">
+      <h2>BibTeX</h2>
+      <div class="bibtex">
+        <button class="copy" id="copyBtn">Copy</button>
+        <pre id="bib">@article{wang2026flip,
+  title   = {The Flip Side of RLHF: On-Policy Feedback for Reward Model Self-Supervised Improvement},
+  author  = {Wang, Xiaobo and Wu, Tong and Tang, Min and Li, Jiaqi and Liu, Qi and Zheng, Zilong},
+  journal = {arXiv preprint arXiv:2605.30888},
+  year    = {2026}
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p>&copy; 2026 Xiaobo Wang. &nbsp;·&nbsp; <a href="https://yofuria.github.io/">Homepage</a></p>
+      <p>Page template hand-built for this project; you are welcome to reuse it.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('copyBtn');
+      var bib = document.getElementById('bib');
+      if (!btn || !bib) return;
+      btn.addEventListener('click', function () {
+        var text = bib.innerText;
+        function done() { btn.textContent = 'Copied!'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text; document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); done(); } catch (e) {}
+          document.body.removeChild(ta);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -97,6 +97,8 @@ Siyuan Qi\*, Bangcheng Yang\*, Kailin Jiang\*, **Xiaobo Wang**, Jiaqi Li, Yifan 
 
 **Xiaobo Wang**, Tong Wu, Min Tang, Jiaqi Li, Qi Liu, Zilong Zheng
 
+[**Project page**](/projects/save/) | [arXiv](https://arxiv.org/abs/2605.30888)
+
 </div>
 </div>
 
