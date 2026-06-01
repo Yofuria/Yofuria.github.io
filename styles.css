@@ -374,6 +374,8 @@ details summary {
 .pub-line-2 b {
     color: #1e293b;
     font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .pub-line-3 {

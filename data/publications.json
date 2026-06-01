@@ -32,7 +32,6 @@
   },
   {
     "title": "The Flip Side of RLHF: On-Policy Feedback for Reward Model Self-Supervised Improvement",
-    "displayTitle": "The Flip Side of RLHF: On-Policy Feedback for Reward Model Self-Supervised Improvement (SAVE)",
     "authors": "<strong>Xiaobo Wang</strong>, Tong Wu, Min Tang, Jiaqi Li, Qi Liu, Zilong Zheng",
     "type": "preprint",
     "isFirstAuthor": true,
@@ -48,7 +47,6 @@
   },
   {
     "title": "Adaptive Preference Optimization with Uncertainty-aware Utility Anchor",
-    "displayTitle": "Adaptive Preference Optimization with Uncertainty-aware Utility Anchor (UAPO)",
     "authors": "<strong>Xiaobo Wang</strong>, Zixia Jia, Jiaqi Li, Qi Liu, Zilong Zheng",
     "type": "accepted",
     "isFirstAuthor": true,
