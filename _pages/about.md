@@ -23,6 +23,8 @@ My research interest includes reward modeling, LLMs alignment and continual lear
 
 
 # 🔥 News
+- *2026.01*: &nbsp;🎉🎉 <a href='https://arxiv.org/abs/2505.19558'>PoliCon</a> has been accepted by ICLR 2026!
+- *2025.12*: &nbsp;🎉🎉 <a href='https://arxiv.org/abs/2601.09113'>The AI Hippocampus</a> has been accepted by TMLR!
 - *2025.10*: &nbsp;🎉🎉 I will serve as reviewer for ACL ARR October.
 - *2025.08*: &nbsp;🎉🎉 <a href='https://www.arxiv.org/abs/2509.10515'>UAPO</a> has been accepted by EMNLP 2025!
 - *2025.05*: &nbsp;🎉🎉 <a href='https://arxiv.org/abs/2505.16475'>ReflectEvo</a> has been accepted by ACL 2025!
@@ -32,22 +34,22 @@ My research interest includes reward modeling, LLMs alignment and continual lear
 
 <div class="paper-scroll">
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TMLR</div><img src='images/memory.png' alt="The AI Hippocampus framework overview" width="100%" loading="lazy"></div></div>
-<div class='paper-box-text' markdown="1">
-
-[The AI Hippocampus: How Far are We From Human Memory?](https://arxiv.org/abs/2601.09113)
-
-Zixia Jia, Jiaqi Li, Yipeng Kang, Yuxuan Wang, Tong Wu, Quansen Wang, **Xiaobo Wang**, Shuyi Zhang, Junzhe Shen, Qing Li, Siyuan Qi, Yitao Liang, Di He, Zilong Zheng, Song-Chun Zhu
-
-</div>
-</div>
-
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2026</div><img src='images/policon.png' alt="PoliCon framework overview" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [PoliCon: Evaluating LLMs on Achieving Diverse Political Consensus Objectives](https://arxiv.org/abs/2505.19558)
 
 Zhaowei Zhang, **Xiaobo Wang**, Minghua Yi, Mengmeng Wang, Fengshuo Bai, Zilong Zheng, Yipeng Kang, Yaodong Yang
+
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TMLR</div><img src='images/memory.png' alt="The AI Hippocampus framework overview" width="100%" loading="lazy"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[The AI Hippocampus: How Far are We From Human Memory?](https://arxiv.org/abs/2601.09113)
+
+Zixia Jia, Jiaqi Li, Yipeng Kang, Yuxuan Wang, Tong Wu, Quansen Wang, **Xiaobo Wang**, Shuyi Zhang, Junzhe Shen, Qing Li, Siyuan Qi, Yitao Liang, Di He, Zilong Zheng, Song-Chun Zhu
 
 </div>
 </div>
