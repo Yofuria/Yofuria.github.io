@@ -41,6 +41,8 @@ My research interest includes reward modeling, LLMs alignment and continual lear
 
 Zhaowei Zhang, **Xiaobo Wang**, Minghua Yi, Mengmeng Wang, Fengshuo Bai, Zilong Zheng, Yipeng Kang, Yaodong Yang
 
+[Project page](https://www.zhangzhaowei.me/projects/PoliCon/) | [Code](https://github.com/bigai-nlco/PoliCon)
+
 </div>
 </div>
 
@@ -50,6 +52,8 @@ Zhaowei Zhang, **Xiaobo Wang**, Minghua Yi, Mengmeng Wang, Fengshuo Bai, Zilong 
 [The AI Hippocampus: How Far are We From Human Memory?](https://arxiv.org/abs/2601.09113)
 
 Zixia Jia, Jiaqi Li, Yipeng Kang, Yuxuan Wang, Tong Wu, Quansen Wang, **Xiaobo Wang**, Shuyi Zhang, Junzhe Shen, Qing Li, Siyuan Qi, Yitao Liang, Di He, Zilong Zheng, Song-Chun Zhu
+
+[Repo & reading list](https://github.com/bigai-nlco/LLM-Memory-Survey)
 
 </div>
 </div>
@@ -71,6 +75,8 @@ Zixia Jia, Jiaqi Li, Yipeng Kang, Yuxuan Wang, Tong Wu, Quansen Wang, **Xiaobo W
 
 Jiaqi Li, Xinyi Dong, Yang Liu, Zhizhuo Yang, Quansen Wang, **Xiaobo Wang**, SongChun Zhu, Zixia Jia, Zilong Zheng
 
+[Code](https://github.com/bigai-nlco/ReflectEvo)
+
 </div>
 </div>
 
@@ -80,6 +86,8 @@ Jiaqi Li, Xinyi Dong, Yang Liu, Zhizhuo Yang, Quansen Wang, **Xiaobo Wang**, Son
 [In-Context Editing: Learning Knowledge from Self-Induced Distributions](https://arxiv.org/abs/2406.11194)
 
 Siyuan Qi\*, Bangcheng Yang\*, Kailin Jiang\*, **Xiaobo Wang**, Jiaqi Li, Yifan Zhong, Yaodong Yang, Zilong Zheng
+
+[Code](https://github.com/bigai-ai/ICE)
 
 </div>
 </div>
@@ -108,6 +116,8 @@ Siyuan Qi\*, Bangcheng Yang\*, Kailin Jiang\*, **Xiaobo Wang**, Jiaqi Li, Yifan 
 [RAM: Towards an Ever-Improving Memory System by Learning from Communications](https://arxiv.org/abs/2404.12045)
 
 Jiaqi Li\*, **Xiaobo Wang\***, Wentao Ding, Zihao Wang, Yipeng Kang, Zixia Jia, Zilong Zheng
+
+[Code](https://github.com/bigai-nlco/RAM)
 
 </div>
 </div>
