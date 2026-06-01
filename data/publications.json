@@ -12,7 +12,8 @@
     "tags": [
       { "text": "Paper", "link": "https://arxiv.org/abs/2505.19558" },
       { "text": "Code", "link": "https://github.com/bigai-nlco/PoliCon" },
-      { "text": "Project Page", "link": "https://www.zhangzhaowei.me/projects/PoliCon/" }
+      { "text": "Project Page", "link": "https://www.zhangzhaowei.me/projects/PoliCon/" },
+      { "text": "Data", "link": "https://huggingface.co/datasets/Yofuria/PoliCon" }
     ]
   },
   {
@@ -42,7 +43,8 @@
     "thumbnail": "assets/publications/save/thumb.png",
     "tags": [
       { "text": "Paper", "link": "https://arxiv.org/abs/2605.30888" },
-      { "text": "Project Page", "link": "projects/save/" }
+      { "text": "Project Page", "link": "projects/save/" },
+      { "text": "Data", "link": "https://huggingface.co/collections/Yofuria/save" }
     ]
   },
   {
@@ -85,7 +87,8 @@
     "thumbnail": "assets/publications/reflectevo/thumb.jpg",
     "tags": [
       { "text": "Paper", "link": "https://arxiv.org/abs/2505.16475" },
-      { "text": "Code", "link": "https://github.com/bigai-nlco/ReflectEvo" }
+      { "text": "Code", "link": "https://github.com/bigai-nlco/ReflectEvo" },
+      { "text": "Data", "link": "https://huggingface.co/datasets/bigai-nlco/ReflectionEvo" }
     ]
   },
   {
@@ -99,7 +102,8 @@
     "thumbnail": "assets/publications/ice/thumb.jpg",
     "tags": [
       { "text": "Paper", "link": "https://arxiv.org/abs/2406.11194" },
-      { "text": "Code", "link": "https://github.com/bigai-ai/ICE" }
+      { "text": "Code", "link": "https://github.com/bigai-ai/ICE" },
+      { "text": "Data", "link": "https://huggingface.co/datasets/Yofuria/ICE" }
     ]
   }
 ]
