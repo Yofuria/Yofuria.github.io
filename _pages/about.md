@@ -62,14 +62,12 @@ Siyuan Qi\*, Bangcheng Yang\*, Kailin Jiang\*, **Xiaobo Wang**, Jiaqi Li, Yifan 
 
 # 📄 Preprints
 
-<!-- Replace the placeholder below with your real preprint(s).
-     Duplicate the whole <div class='paper-box'>...</div> block for more entries. -->
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='images/500x300.png' alt="preprint preview" width="100%" loading="lazy"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='images/save.png' alt="SAVE framework overview" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Your preprint title goes here](#)
+[The Flip Side of RLHF: On-Policy Feedback for Reward Model Self-Supervised Improvement](https://arxiv.org/abs/2605.30888)
 
-**Xiaobo Wang**, Co-authors
+**Xiaobo Wang**, Tong Wu, Min Tang, Jiaqi Li, Qi Liu, Zilong Zheng
 
 </div>
 </div>
