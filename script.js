@@ -549,7 +549,7 @@ function getVenueShortName(venueStr, year) {
     let s = venueStr.replace(/\d{4}/g, '').trim();
     let suffix = '';
 
-    const conferences = ['NeurIPS', 'ICML', 'CVPR', 'ICCV', 'ECCV', 'ICRA', 'AAAI', 'GLOBECOM', 'INFOCOM', 'MOBICOM'];
+    const conferences = ['NeurIPS', 'ICML', 'ICLR', 'EMNLP', 'ACL', 'CVPR', 'ICCV', 'ECCV', 'ICRA', 'AAAI', 'GLOBECOM', 'INFOCOM', 'MOBICOM'];
     for (const conf of conferences) {
         if (s.includes(conf)) {
             if (year) {
@@ -565,6 +565,8 @@ function getVenueShortName(venueStr, year) {
     if (s.toLowerCase().includes('arxiv')) {
         return 'ArXiv' + revisionSuffix;
     }
+
+    if (s.includes('TMLR')) return 'TMLR' + revisionSuffix;
 
     if (s.includes('TDSC')) return 'IEEE TDSC' + revisionSuffix;
     if (s.includes('TMC')) return 'IEEE TMC' + revisionSuffix;
@@ -602,6 +604,11 @@ function getVenueFullName(venueStr) {
     if (s.includes('GLOBECOM')) return 'IEEE Global Communications Conference';
     if (s.includes('INFOCOM')) return 'IEEE International Conference on Computer Communications';
     if (s.includes('MOBICOM')) return 'Annual International Conference on Mobile Computing and Networking';
+
+    if (s.includes('ICLR')) return 'International Conference on Learning Representations';
+    if (s.includes('EMNLP')) return 'Conference on Empirical Methods in Natural Language Processing';
+    if (s.includes('ACL')) return 'Annual Meeting of the Association for Computational Linguistics';
+    if (s.includes('TMLR')) return 'Transactions on Machine Learning Research';
 
     if (s.toLowerCase().includes('arxiv')) return 'arXiv preprint';
 
