@@ -41,68 +41,36 @@
 @import "print";
 
 /* ==========================================================================
-   Publication cards
+   Custom — premium look, section headers & publication sliders
    ========================================================================== */
 
-.paper-box {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 1.5em;
-    margin-bottom: 1.5em;
-    border: 1px solid #ececec;
-    border-radius: 12px;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+$font-modern : "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$accent      : #0064d2;
+$accent-2    : #00c2ff;
+$ink         : #1f2733;
 
-    &:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
-    }
-
-    .paper-box-image {
-        position: relative;
-        justify-content: center;
-        display: flex;
-        width: 100%;
-        order: 2;
-        img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-            object-fit: cover;
-        }
-    }
-
-    .paper-box-text {
-        max-width: 100%;
-        order: 1;
-
-        a {
-            font-weight: 600;
-        }
-    }
-
-    @include breakpoint($medium) {
-        .paper-box-image {
-            justify-content: left;
-            min-width: 200px;
-            max-width: 40%;
-            order: 1;
-        }
-
-        .paper-box-text {
-            justify-content: left;
-            padding-left: 2em;
-            max-width: 60%;
-            order: 2;
-        }
-    }
+/* ---------- Modern typography ---------- */
+body,
+h1, h2, h3, h4, h5, h6,
+.author__name, .author__bio,
+.masthead__menu-item, .greedy-nav a,
+.page__content {
+    font-family: $font-modern;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+.page__content {
+    color: $ink;
+    line-height: 1.72;
+    font-size: 1.02em;
+}
+
+.author__name {
+    letter-spacing: -0.01em;
+}
+
+/* Scroll offset so anchored headings clear the fixed masthead */
 $scroll_offset : 2em;
 h1:before, .anchor:before {
     content: '';
@@ -113,37 +81,194 @@ h1:before, .anchor:before {
     margin-top: -$scroll_offset;
 }
 
-/* Section headers (🔥 News, 📝 Publications, ...) */
-.page__content {
-    h1 {
-        margin-top: 1.2em;
-        padding-bottom: 0.3em;
-        border-bottom: 2px solid #f0f0f0;
-    }
+/* ---------- Section headers (🔥 News, 📝 Publications, ...) ---------- */
+.page__content h1 {
+    position: relative;
+    margin-top: 1.4em;
+    margin-bottom: 0.8em;
+    padding-bottom: 0.4em;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    border-bottom: 1px solid #ececf1;
 }
-
-.badge {
-    display: inline-block;
-    padding: 0.3em 0.8em;
+.page__content h1::after {
+    content: "";
     position: absolute;
-    margin-top: 0.6em;
-    margin-left: 0.4em;
-    color: #fff;
-    background-image: linear-gradient(135deg, #00369f 0%, #0064d2 100%);
-    border-radius: 6px;
-    font-size: 0.75em;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    box-shadow: 0 2px 6px rgba(0, 54, 159, 0.35);
-    z-index: 1;
+    left: 0;
+    bottom: -1px;
+    width: 56px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, $accent, $accent-2);
 }
 
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .paper-box {
-        transition: none;
-        &:hover {
-            transform: none;
-        }
+/* ==========================================================================
+   Publication / preprint sliders
+   ========================================================================== */
+
+.carousel-wrap {
+    position: relative;
+    margin: 0.5em 0 1.5em;
+}
+
+/* Edge fades hint that there is more to scroll */
+.carousel-wrap::before,
+.carousel-wrap::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 16px;
+    width: 44px;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.carousel-wrap::before {
+    left: 0;
+    background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0));
+}
+.carousel-wrap::after {
+    right: 0;
+    background: linear-gradient(270deg, #fff, rgba(255, 255, 255, 0));
+}
+.carousel-wrap.is-scrollable:not(.at-start)::before { opacity: 1; }
+.carousel-wrap.is-scrollable:not(.at-end)::after { opacity: 1; }
+
+.paper-carousel {
+    display: flex;
+    gap: 1.25em;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
+    padding: 0.75em 0.25em 1.1em;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #d6d9e0 transparent;
+}
+.paper-carousel::-webkit-scrollbar { height: 8px; }
+.paper-carousel::-webkit-scrollbar-thumb {
+    background: #d6d9e0;
+    border-radius: 8px;
+}
+.paper-carousel::-webkit-scrollbar-track { background: transparent; }
+
+.paper-card {
+    flex: 0 0 330px;
+    width: 330px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #ececf1;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 6px 18px rgba(16, 24, 40, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.paper-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(16, 24, 40, 0.13);
+}
+
+.paper-card-media {
+    position: relative;
+    height: 190px;
+    background: #f5f6f8;
+    overflow: hidden;
+}
+.paper-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.paper-card:hover .paper-card-media img { transform: scale(1.04); }
+
+.paper-card-body {
+    padding: 1em 1.15em 1.25em;
+    font-size: 0.9em;
+    line-height: 1.55;
+}
+.paper-card-body p { margin: 0 0 0.5em; }
+.paper-card-body p:last-child { margin-bottom: 0; }
+.paper-card-body a {
+    font-weight: 600;
+    color: $ink;
+    text-decoration: none;
+    background-image: linear-gradient(transparent 60%, rgba(0, 100, 210, 0.16) 60%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.25s ease, color 0.2s ease;
+}
+.paper-card-body a:hover {
+    color: $accent;
+    background-size: 100% 100%;
+}
+
+/* Conference / venue badge */
+.badge {
+    position: absolute;
+    top: 0.7em;
+    left: 0.7em;
+    padding: 0.34em 0.75em;
+    color: #fff;
+    font-size: 0.68em;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    border-radius: 999px;
+    background: rgba(7, 33, 84, 0.92);
+    box-shadow: 0 3px 10px rgba(7, 33, 84, 0.35);
+    z-index: 2;
+}
+
+/* Slider arrows */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid #e7e9ee;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.14);
+    color: #1f2733;
+    font-size: 1.25em;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.carousel-btn:hover {
+    background: #fff;
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 10px 24px rgba(16, 24, 40, 0.2);
+}
+.carousel-prev { left: -10px; }
+.carousel-next { right: -10px; }
+.carousel-btn[hidden] { display: none; }
+
+/* Phones: let a card take most of the width with the next one peeking */
+@media (max-width: 600px) {
+    .paper-card {
+        flex-basis: 80vw;
+        width: 80vw;
     }
+    .carousel-prev { left: 0; }
+    .carousel-next { right: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .paper-carousel { scroll-behavior: auto; }
+    .paper-card,
+    .paper-card-media img,
+    .carousel-btn { transition: none; }
+    .paper-card:hover { transform: none; }
+    .paper-card:hover .paper-card-media img { transform: none; }
 }
