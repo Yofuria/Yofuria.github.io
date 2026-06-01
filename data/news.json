@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2026.01",
+    "content": "PoliCon has been accepted by ICLR 2026!",
+    "links": [
+      { "text": "arXiv", "url": "https://arxiv.org/abs/2505.19558" }
+    ]
+  },
+  {
+    "date": "2025.12",
+    "content": "The AI Hippocampus has been accepted by TMLR!",
+    "links": [
+      { "text": "arXiv", "url": "https://arxiv.org/abs/2601.09113" }
+    ]
+  },
+  {
+    "date": "2025.10",
+    "content": "I will serve as a reviewer for ACL ARR October.",
+    "links": []
+  },
+  {
+    "date": "2025.08",
+    "content": "UAPO has been accepted by EMNLP 2025!",
+    "links": [
+      { "text": "arXiv", "url": "https://arxiv.org/abs/2509.10515" }
+    ]
+  },
+  {
+    "date": "2025.05",
+    "content": "ReflectEvo has been accepted by ACL 2025!",
+    "links": [
+      { "text": "arXiv", "url": "https://arxiv.org/abs/2505.16475" }
+    ]
+  },
+  {
+    "date": "2025.01",
+    "content": "ICE has been accepted by ICLR 2025!",
+    "links": [
+      { "text": "arXiv", "url": "https://arxiv.org/abs/2406.11194" }
+    ]
+  }
+]
