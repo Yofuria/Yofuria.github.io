@@ -635,7 +635,8 @@ function shouldShowVenueTag(venueStr, fullVenueName, venueShort) {
 }
 
 function getDataPath(fileName) {
-    return window.location.pathname.includes('/pages/') ? `../data/${fileName}` : `data/${fileName}`;
+    const base = window.location.pathname.includes('/pages/') ? `../data/${fileName}` : `data/${fileName}`;
+    return `${base}?t=${Date.now()}`;
 }
 
 function normalizeAssetPath(path) {
