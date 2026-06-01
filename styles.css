@@ -376,6 +376,7 @@ details summary {
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 3px;
+    text-decoration-skip-ink: none;
 }
 
 .pub-line-3 {
