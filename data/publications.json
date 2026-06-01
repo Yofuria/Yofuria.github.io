@@ -58,7 +58,8 @@
     "year": "2025",
     "thumbnail": "assets/publications/uapo/thumb.png",
     "tags": [
-      { "text": "Paper", "link": "https://arxiv.org/abs/2509.10515" }
+      { "text": "Paper", "link": "https://arxiv.org/abs/2509.10515" },
+      { "text": "Data", "link": "https://huggingface.co/collections/Yofuria/uapo" }
     ]
   },
   {
