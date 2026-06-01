@@ -40,6 +40,16 @@ Zixia Jia, Jiaqi Li, Yipeng Kang, Yuxuan Wang, Tong Wu, Quansen Wang, **Xiaobo W
 </div>
 </div>
 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2026</div><img src='images/policon.png' alt="PoliCon framework overview" width="100%" loading="lazy"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[PoliCon: Evaluating LLMs on Achieving Diverse Political Consensus Objectives](https://arxiv.org/abs/2505.19558)
+
+Zhaowei Zhang, **Xiaobo Wang**, Minghua Yi, Mengmeng Wang, Fengshuo Bai, Zilong Zheng, Yipeng Kang, Yaodong Yang
+
+</div>
+</div>
+
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/uapo.png' alt="UAPO paper preview" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
 
