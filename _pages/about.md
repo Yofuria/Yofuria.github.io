@@ -30,7 +30,7 @@ My research interest includes reward modeling, LLMs alignment and continual lear
 
 # 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/uapo.png' alt="uapo" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/uapo.png' alt="UAPO paper preview" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Adaptive Preference Optimization with Uncertainty-aware Utility Anchor](https://www.arxiv.org/abs/2509.10515)
@@ -40,7 +40,7 @@ My research interest includes reward modeling, LLMs alignment and continual lear
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/reflectevo.jpg' alt="reflectevo" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACL 2025</div><img src='images/reflectevo.jpg' alt="ReflectEvo paper preview" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [ReflectEvo: Improving Meta Introspection of Small LLMs by Learning Self-Reflection](https://arxiv.org/abs/2505.16475)
@@ -50,7 +50,7 @@ Jiaqi Li, Xinyi Dong, Yang Liu, Zhizhuo Yang, Quansen Wang, **Xiaobo Wang**, Son
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2025</div><img src='images/ice.jpg' alt="ice" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2025</div><img src='images/ice.jpg' alt="ICE paper preview" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [In-Context Editing: Learning Knowledge from Self-Induced Distributions](https://arxiv.org/abs/2406.11194)
