@@ -689,19 +689,12 @@ function shouldOpenInNewTab(href) {
     if (!href) {
         return false;
     }
-    if (href.startsWith('#')) {
-        return false;
+    // Only external (absolute) URLs open in a new tab; all relative/in-page
+    // links (including filtered .html?query links) stay in the same tab.
+    if (/^(https?:)?\/\//i.test(href)) {
+        return true;
     }
-    if (href.startsWith('../') || href.startsWith('./')) {
-        return false;
-    }
-    if (/^[a-zA-Z]:\\/.test(href)) {
-        return false;
-    }
-    if (href.endsWith('.html')) {
-        return false;
-    }
-    return true;
+    return false;
 }
 
 function setupLinkObserver() {

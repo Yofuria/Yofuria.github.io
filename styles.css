@@ -523,6 +523,22 @@ details summary {
     text-decoration: none;
 }
 
+.news-content strong {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: #b88a4d;
+}
+
+.page-footer {
+    max-width: 1100px;
+    margin: 2rem auto 0;
+    padding: 1.5rem 1.25rem 2.5rem;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.85rem;
+    border-top: 1px solid #e5e7eb;
+}
+
 .honor-item {
     display: grid;
     grid-template-columns: 100px 1fr;
