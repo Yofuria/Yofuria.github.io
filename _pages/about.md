@@ -30,6 +30,16 @@ My research interest includes reward modeling, LLMs alignment and continual lear
 
 # 📝 Publications 
 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TMLR</div><img src='images/memory.png' alt="The AI Hippocampus framework overview" width="100%" loading="lazy"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[The AI Hippocampus: How Far are We From Human Memory?](https://arxiv.org/abs/2601.09113)
+
+Zixia Jia, Jiaqi Li, Yipeng Kang, Yuxuan Wang, Tong Wu, Quansen Wang, **Xiaobo Wang**, Shuyi Zhang, Junzhe Shen, Qing Li, Siyuan Qi, Yitao Liang, Di He, Zilong Zheng, Song-Chun Zhu
+
+</div>
+</div>
+
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">EMNLP 2025</div><img src='images/uapo.png' alt="UAPO paper preview" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
 
