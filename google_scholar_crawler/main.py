@@ -2,7 +2,8 @@
 
 Robustness notes:
 - Google Scholar frequently blocks requests coming from shared CI IPs.
-  We first try a direct request, then rotate free proxies with retries.
+  Strategy: use ScraperAPI when SCRAPERAPI_KEY is set (most reliable),
+  then fall back to a direct request and rotating free proxies.
 - If every attempt fails we write NOTHING and exit 0, so the workflow can
   skip the publish step and keep the last good data instead of overwriting
   it with garbage / breaking the citations badge.
@@ -16,8 +17,10 @@ from datetime import datetime
 from scholarly import scholarly, ProxyGenerator
 
 SCHOLAR_ID = os.environ["GOOGLE_SCHOLAR_ID"]
+SCRAPERAPI_KEY = os.environ.get("SCRAPERAPI_KEY")
 OUT_DIR = "results"
-MAX_PROXY_ATTEMPTS = 6
+SCRAPERAPI_ATTEMPTS = 3
+FREE_PROXY_ATTEMPTS = 6
 
 
 def fetch_author():
@@ -27,25 +30,41 @@ def fetch_author():
 
 
 def fetch_with_retries():
-    # 1) Direct attempt — fast when the runner IP isn't blocked.
+    # 1) ScraperAPI — paid proxy, by far the most reliable from CI.
+    if SCRAPERAPI_KEY:
+        for attempt in range(1, SCRAPERAPI_ATTEMPTS + 1):
+            try:
+                pg = ProxyGenerator()
+                if not pg.ScraperAPI(SCRAPERAPI_KEY):
+                    print(f"[scraperapi {attempt}] setup returned False", file=sys.stderr)
+                    continue
+                scholarly.use_proxy(pg)
+                print(f"[scraperapi {attempt}] fetching...", file=sys.stderr)
+                return fetch_author()
+            except Exception as e:  # noqa: BLE001
+                print(f"[scraperapi {attempt}] failed: {e}", file=sys.stderr)
+    else:
+        print("SCRAPERAPI_KEY not set; using direct + free proxies.", file=sys.stderr)
+
+    # 2) Direct attempt — fast when the runner IP isn't blocked.
     try:
         print("[direct] fetching...", file=sys.stderr)
         return fetch_author()
     except Exception as e:  # noqa: BLE001
         print(f"[direct] failed: {e}", file=sys.stderr)
 
-    # 2) Rotate free proxies.
-    for attempt in range(1, MAX_PROXY_ATTEMPTS + 1):
+    # 3) Rotate free proxies as a last resort.
+    for attempt in range(1, FREE_PROXY_ATTEMPTS + 1):
         try:
             pg = ProxyGenerator()
             if not pg.FreeProxies():
-                print(f"[proxy {attempt}] no free proxy available", file=sys.stderr)
+                print(f"[freeproxy {attempt}] no free proxy available", file=sys.stderr)
                 continue
             scholarly.use_proxy(pg)
-            print(f"[proxy {attempt}] got proxy, fetching...", file=sys.stderr)
+            print(f"[freeproxy {attempt}] got proxy, fetching...", file=sys.stderr)
             return fetch_author()
         except Exception as e:  # noqa: BLE001
-            print(f"[proxy {attempt}] failed: {e}", file=sys.stderr)
+            print(f"[freeproxy {attempt}] failed: {e}", file=sys.stderr)
 
     return None
 

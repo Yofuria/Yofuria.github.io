@@ -30,6 +30,7 @@ jobs:
       - name: Crawl Google Scholar
         env:
           GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}
+          SCRAPERAPI_KEY: ${{ secrets.SCRAPERAPI_KEY }}
         run: |
           cd google_scholar_crawler
           python3 main.py
