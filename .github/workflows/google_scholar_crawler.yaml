@@ -3,7 +3,7 @@ name: Get Citation Data
 on:
   workflow_dispatch:        # manual "Run workflow" button — use this to test
   schedule:
-    - cron: '0 8 * * *'     # daily 08:00 UTC
+    - cron: '37 9 * * *'    # daily 09:37 UTC (北京 17:37) — off the top of the hour
 
 permissions:
   contents: write
