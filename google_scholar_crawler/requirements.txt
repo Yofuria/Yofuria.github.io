@@ -2,3 +2,7 @@ scholarly==1.7.11
 # scholarly 1.7.11 calls httpx.Client(proxies=...), which httpx 0.28 removed.
 # Pin <0.28 so ScraperAPI / proxy modes keep working.
 httpx==0.27.2
+# scholarly 1.7.11 calls FreeProxy.get_proxy_list() with no args at
+# _proxy_generator.py:518. free-proxy >= 1.1.0 made `repeat` a required
+# positional arg, which crashes that line. Pin <1.1.0 (method takes no args).
+free-proxy==1.0.6
