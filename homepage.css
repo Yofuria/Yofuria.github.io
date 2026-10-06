@@ -56,6 +56,8 @@
   #academic-homepage .ah-project { margin-top: 22px; }
   #academic-homepage .ah-project p { margin: 5px 0 8px; }
   #academic-homepage .ah-cv-row { margin-top: 18px; }
+  #academic-homepage .ah-cv-entry { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 16px; align-items: start; }
+  #academic-homepage .ah-institution-logo { display: block; width: 48px; height: 48px; object-fit: contain; }
   #academic-homepage .ah-cv-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 3px 16px; }
   #academic-homepage .ah-cv-heading span { color: var(--ah-muted); font-size: 13px; }
   #academic-homepage .ah-cv-row p { margin: 4px 0; }
@@ -76,6 +78,9 @@
     #academic-homepage .ah-page h1 span { display: block; margin: 4px 0 0; font-size: 17px; }
     #academic-homepage .ah-page h2 { font-size: 20px; }
     #academic-homepage .ah-portrait { width: 72px; height: 72px; flex-basis: 72px; }
+    #academic-homepage .ah-cv-entry { grid-template-columns: 40px minmax(0, 1fr); gap: 12px; }
+    #academic-homepage .ah-institution-logo { width: 40px; height: 40px; }
+    #academic-homepage .ah-cv-entry .ah-cv-heading { flex-direction: column; align-items: flex-start; gap: 0; }
     #academic-homepage .ah-news-row { grid-template-columns: 1fr; gap: 1px; padding: 10px 0; }
     #academic-homepage .ah-news-row time { padding-top: 0; }
   }
@@ -116,4 +121,3 @@ body { margin: 0; }
   #academic-homepage .pub-link-btn { display: inline-flex; align-items: center; min-height: 44px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
