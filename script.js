@@ -265,8 +265,9 @@ function renderAllPublications(container, publications) {
 }
 
 function createPublicationItem(pub) {
+    const simpleHomepage = document.body.classList.contains('homepage-simple');
     const item = document.createElement('li');
-    item.className = 'pub-list-item with-thumbnail-expanded';
+    item.className = simpleHomepage ? 'pub-list-item' : 'pub-list-item with-thumbnail-expanded';
 
     const content = document.createElement('div');
     content.className = 'pub-content-wrapper';
@@ -352,7 +353,7 @@ function createPublicationItem(pub) {
 
     item.appendChild(content);
 
-    if (pub.thumbnail) {
+    if (pub.thumbnail && !simpleHomepage) {
         const thumbBox = document.createElement('div');
         thumbBox.className = 'pub-thumbnail-box';
 
@@ -390,7 +391,8 @@ function renderNewsItems(newsData, container) {
         contentElement.className = 'news-content';
 
         const textSpan = document.createElement('span');
-        textSpan.innerHTML = '🎉 ' + (newsItem.content || '');
+        const prefix = document.body.classList.contains('homepage-simple') ? '' : '🎉 ';
+        textSpan.innerHTML = prefix + (newsItem.content || '');
         contentElement.appendChild(textSpan);
 
         if (Array.isArray(newsItem.links)) {
