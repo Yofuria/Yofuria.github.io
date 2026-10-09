@@ -113,11 +113,20 @@ body { margin: 0; }
 #academic-homepage .loading-message { color: var(--ah-muted); font-size: 14px; }
 #academic-homepage .ah-contact h3 { margin-top: 15px; }
 #academic-homepage .ah-footer p { margin: 3px 0; }
+#academic-homepage .ah-nav a[aria-current="page"] { color: var(--ah-ink); }
+#academic-homepage .ah-archive-header { margin-bottom: 22px; }
+#academic-homepage .ah-filter-nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 18px; font-size: 14px; }
+#academic-homepage .ah-filter-nav .filter-link.active { color: var(--ah-ink); font-weight: 500; text-decoration: underline; text-underline-offset: 5px; }
+#academic-homepage .pub-year-group { margin-top: 26px; }
+#academic-homepage .ah-page h2.pub-year-header { color: var(--ah-muted); font-size: 17px; margin-bottom: 4px; }
+#academic-homepage .ah-page p.ah-back-link { margin-top: 28px; font-size: 14px; }
 @media (max-width: 600px) {
   #academic-homepage .news-item { grid-template-columns: 1fr; gap: 1px; padding: 10px 0; }
   #academic-homepage .news-date { padding-top: 0; }
 }
 @media (pointer: coarse) {
-  #academic-homepage .pub-link-btn { display: inline-flex; align-items: center; min-height: 44px; }
+  #academic-homepage .pub-link-btn,
+  #academic-homepage .filter-link,
+  #academic-homepage .ah-back-link a { display: inline-flex; align-items: center; min-height: 44px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

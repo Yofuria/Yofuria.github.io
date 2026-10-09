@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All publications and preprints by Xiaobo Wang, with filters for first-author and accepted papers.">
     <title>All Publications - Xiaobo Wang</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0J0FVEM5MD"></script>
@@ -14,53 +15,37 @@
     </script>
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    <link rel="stylesheet" href="../styles.css?v=20260606">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../homepage.css?v=20261009">
+    <script src="../script.js?v=20261009" defer></script>
 </head>
-<body>
-    <nav class="top-nav">
-        <ul class="nav-links" style="display:flex; gap:1.25rem; align-items:center; padding:1rem 1.25rem; max-width:1100px; margin:0 auto;">
-            <li><a href="../index.html" class="nav-item">Home</a></li>
-            <li><a href="#" class="nav-item active">All Publications</a></li>
-        </ul>
-    </nav>
-
-    <div class="content-container">
-        <div class="main-wrapper">
-            <main class="main-content">
-                <section id="all-publications" class="section">
-                    <h2 class="section-title">📄 All Publications <span class="subtitle-text" id="filter-indicator"></span></h2>
-
-                    <div class="publication-filters" style="margin-top: 0; padding-top: 0; border-top: none;">
-                        <a href="all-publications.html" class="filter-link" id="filter-all">
-                            <i class="fas fa-list"></i> All Publications
-                        </a>
-                        <a href="all-publications.html?filter=first-author" class="filter-link" id="filter-first">
-                            <i class="fas fa-user"></i> First Author Papers
-                        </a>
-                        <a href="all-publications.html?filter=accepted" class="filter-link" id="filter-accepted">
-                            <i class="fas fa-check-circle"></i> Accepted Papers
-                        </a>
-                        <a href="all-publications.html?filter=preprint" class="filter-link" id="filter-preprint">
-                            <i class="fas fa-file-lines"></i> Preprints
-                        </a>
-                    </div>
-
-                    <div class="content-block" style="margin-top: 30px;">
-                        <div id="all-publications-container" class="publications-list"></div>
-                        <div class="view-all-container">
-                            <a href="../index.html" class="view-all-btn"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
+<body class="academic-simple">
+  <a class="skip-link" href="#all-publications">Skip to content</a>
+  <div id="academic-homepage">
+    <div class="ah-page">
+      <div class="ah-container">
+        <nav class="ah-nav" aria-label="Main navigation">
+          <a href="../index.html">Home</a>
+          <a href="all-publications.html" aria-current="page">Publications</a>
+          <a href="all-news.html">News</a>
+        </nav>
+        <main id="all-publications">
+          <header class="ah-archive-header"><h1>All Publications <span id="filter-indicator"></span></h1></header>
+          <nav class="ah-filter-nav" aria-label="Publication filters">
+            <a href="all-publications.html" class="filter-link" id="filter-all">All Publications</a>
+            <a href="all-publications.html?filter=first-author" class="filter-link" id="filter-first">First Author Papers</a>
+            <a href="all-publications.html?filter=accepted" class="filter-link" id="filter-accepted">Accepted Papers</a>
+            <a href="all-publications.html?filter=preprint" class="filter-link" id="filter-preprint">Preprints</a>
+          </nav>
+          <p class="ah-note">* indicates equal contribution.</p>
+          <div id="all-publications-container"><p class="loading-message" role="status">Loading publications…</p></div>
+          <p class="ah-back-link"><a href="../index.html#publications">← Back to Homepage</a></p>
+        </main>
+        <footer class="ah-footer">
+          <p>© <span id="current-year"></span> Xiaobo Wang. All rights reserved.</p>
+          <p>Built with <a href="https://github.com/yihangtao/AcaNova-X" target="_blank" rel="noopener noreferrer">AcaNova-X</a></p>
+        </footer>
+      </div>
     </div>
-
-    <footer class="page-footer">
-        <p>&copy; <span id="current-year"></span> Xiaobo Wang. All rights reserved.</p>
-    </footer>
-
-    <script src="../script.js?v=20260604"></script>
+  </div>
 </body>
 </html>

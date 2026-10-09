@@ -248,7 +248,7 @@ function renderAllPublications(container, publications) {
         const group = document.createElement('div');
         group.className = 'pub-year-group';
 
-        const header = document.createElement('h3');
+        const header = document.createElement('h2');
         header.className = 'pub-year-header';
         header.textContent = year;
         group.appendChild(header);
@@ -265,9 +265,9 @@ function renderAllPublications(container, publications) {
 }
 
 function createPublicationItem(pub) {
-    const simpleHomepage = document.body.classList.contains('homepage-simple');
+    const simplePage = document.body.matches('.homepage-simple, .academic-simple');
     const item = document.createElement('li');
-    item.className = simpleHomepage ? 'pub-list-item' : 'pub-list-item with-thumbnail-expanded';
+    item.className = simplePage ? 'pub-list-item' : 'pub-list-item with-thumbnail-expanded';
 
     const content = document.createElement('div');
     content.className = 'pub-content-wrapper';
@@ -353,7 +353,7 @@ function createPublicationItem(pub) {
 
     item.appendChild(content);
 
-    if (pub.thumbnail && !simpleHomepage) {
+    if (pub.thumbnail && !simplePage) {
         const thumbBox = document.createElement('div');
         thumbBox.className = 'pub-thumbnail-box';
 
@@ -391,7 +391,7 @@ function renderNewsItems(newsData, container) {
         contentElement.className = 'news-content';
 
         const textSpan = document.createElement('span');
-        const prefix = document.body.classList.contains('homepage-simple') ? '' : '🎉 ';
+        const prefix = document.body.matches('.homepage-simple, .academic-simple') ? '' : '🎉 ';
         textSpan.innerHTML = prefix + (newsItem.content || '');
         contentElement.appendChild(textSpan);
 
@@ -504,6 +504,7 @@ function getPublicationFilter() {
 function updateFilterButtons(filter) {
     document.querySelectorAll('.filter-link').forEach(link => {
         link.classList.remove('active');
+        link.removeAttribute('aria-current');
     });
 
     let activeId = 'filter-all';
@@ -517,6 +518,7 @@ function updateFilterButtons(filter) {
     const element = document.getElementById(activeId);
     if (element) {
         element.classList.add('active');
+        element.setAttribute('aria-current', 'page');
     }
 }
 
