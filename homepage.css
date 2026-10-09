@@ -120,6 +120,22 @@ body { margin: 0; }
 #academic-homepage .pub-year-group { margin-top: 26px; }
 #academic-homepage .ah-page h2.pub-year-header { color: var(--ah-muted); font-size: 17px; margin-bottom: 4px; }
 #academic-homepage .ah-page p.ah-back-link { margin-top: 28px; font-size: 14px; }
+#academic-homepage .ah-page .ah-paper-venue { margin-top: 0; color: var(--ah-muted); font-size: 13px; }
+#academic-homepage .ah-page .ah-paper-authors { margin-top: 16px; font-size: 14px; }
+#academic-homepage .ah-paper-author { font-weight: 500; }
+#academic-homepage .ah-page .ah-paper-affiliation { color: var(--ah-muted); font-size: 14px; }
+#academic-homepage .ah-paper-header .ah-resources { margin-top: 16px; align-items: center; }
+#academic-homepage .ah-resource-pending { color: var(--ah-muted); }
+#academic-homepage .ah-paper-figure { margin: 0; }
+#academic-homepage .ah-paper-figure img { display: block; width: 100%; height: auto; }
+#academic-homepage .ah-paper-figure figcaption { margin-top: 12px; color: var(--ah-muted); font-size: 14px; }
+#academic-homepage .ah-paper-step { margin-top: 20px; }
+#academic-homepage .ah-page .ah-paper-step-number { margin-bottom: 0; color: var(--ah-muted); font-size: 12px; }
+#academic-homepage .ah-paper-step p { margin-top: 5px; }
+#academic-homepage .ah-bibtex-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+#academic-homepage .ah-copy-bibtex { padding: 4px 0; border: 0; background: none; color: var(--ah-link); font: inherit; font-size: 13px; cursor: pointer; }
+#academic-homepage .ah-copy-bibtex:hover { text-decoration: underline; text-underline-offset: 3px; }
+#academic-homepage .ah-bibtex { margin: 0; padding: 16px; border: 1px solid var(--ah-rule); background: #f8f9fa; color: var(--ah-ink); overflow-x: auto; font: 13px/1.65 "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
 @media (max-width: 600px) {
   #academic-homepage .news-item { grid-template-columns: 1fr; gap: 1px; padding: 10px 0; }
   #academic-homepage .news-date { padding-top: 0; }
@@ -127,6 +143,7 @@ body { margin: 0; }
 @media (pointer: coarse) {
   #academic-homepage .pub-link-btn,
   #academic-homepage .filter-link,
-  #academic-homepage .ah-back-link a { display: inline-flex; align-items: center; min-height: 44px; }
+  #academic-homepage .ah-back-link a,
+  #academic-homepage .ah-copy-bibtex { display: inline-flex; align-items: center; min-height: 44px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
