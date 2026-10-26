@@ -1,7 +1,7 @@
 [
   {
     "date": "2026.10",
-    "content": "One co-first-authored paper entitled \"RSIHub: A Composable Framework for Agent-Evolution Methods\" has been accepted by <strong>First Workshop on Meta Agents: Managing Agents that Manage Agents (NeurIPS 2026)</strong>!",
+    "content": "RSIHub (co-first author) accepted at <strong>First Workshop on Meta Agents: Managing Agents that Manage Agents (NeurIPS 2026)</strong>.",
     "links": [
       { "text": "arXiv", "url": "https://arxiv.org/abs/2610.32253" },
       { "text": "Workshop", "url": "https://meta-agents-workshop.github.io/" }
@@ -9,40 +9,40 @@
   },
   {
     "date": "2026.01",
-    "content": "One co-authored paper entitled \"PoliCon: Evaluating LLMs on Achieving Diverse Political Consensus Objectives\" has been accepted by <strong>ICLR 2026</strong>!",
+    "content": "PoliCon accepted at <strong>ICLR 2026</strong>.",
     "links": [
       { "text": "arXiv", "url": "https://arxiv.org/abs/2505.19558" }
     ]
   },
   {
     "date": "2025.12",
-    "content": "One co-authored paper entitled \"The AI Hippocampus: How Far are We From Human Memory?\" has been accepted by <strong>TMLR</strong>!",
+    "content": "The AI Hippocampus accepted by <strong>TMLR</strong>.",
     "links": [
       { "text": "arXiv", "url": "https://arxiv.org/abs/2601.09113" }
     ]
   },
   {
     "date": "2025.10",
-    "content": "I will serve as a reviewer for <strong>ACL ARR (October 2025)</strong>.",
+    "content": "<strong>ACL ARR</strong> reviewer.",
     "links": []
   },
   {
     "date": "2025.08",
-    "content": "One first-author paper entitled \"Adaptive Preference Optimization with Uncertainty-aware Utility Anchor\" has been accepted by <strong>EMNLP 2025</strong>!",
+    "content": "UAPO (first author) accepted at <strong>EMNLP 2025</strong>.",
     "links": [
       { "text": "arXiv", "url": "https://arxiv.org/abs/2509.10515" }
     ]
   },
   {
     "date": "2025.05",
-    "content": "One co-authored paper entitled \"ReflectEvo: Improving Meta Introspection of Small LLMs by Learning Self-Reflection\" has been accepted by <strong>ACL 2025</strong>!",
+    "content": "ReflectEvo accepted at <strong>ACL 2025</strong>.",
     "links": [
       { "text": "arXiv", "url": "https://arxiv.org/abs/2505.16475" }
     ]
   },
   {
     "date": "2025.01",
-    "content": "One co-authored paper entitled \"In-Context Editing: Learning Knowledge from Self-Induced Distributions\" has been accepted by <strong>ICLR 2025</strong>!",
+    "content": "ICE accepted at <strong>ICLR 2025</strong>.",
     "links": [
       { "text": "arXiv", "url": "https://arxiv.org/abs/2406.11194" }
     ]
