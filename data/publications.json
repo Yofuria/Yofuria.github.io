@@ -6,7 +6,9 @@
     "isFirstAuthor": true,
     "showOnHomepage": true,
     "featuredOrder": 0,
-    "venue": "NeurIPS 2026 — First Workshop on Meta Agents: Managing Agents that Manage Agents",
+    "venue": "NeurIPS 2026 Meta-Agents Workshop",
+    "venueFullName": "Meta-Agents Workshop",
+    "venueShortName": "NeurIPS'26",
     "year": "2026",
     "tags": [
       { "text": "Paper", "link": "https://arxiv.org/abs/2610.32253" },

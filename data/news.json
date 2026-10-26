@@ -1,7 +1,7 @@
 [
   {
     "date": "2026.10",
-    "content": "Our co-first-authored paper \"RSIHub: A Composable Framework for Agent-Evolution Methods\" has been accepted by the <strong>First Workshop on Meta Agents: Managing Agents that Manage Agents at NeurIPS 2026</strong>!",
+    "content": "One co-first-authored paper entitled \"RSIHub: A Composable Framework for Agent-Evolution Methods\" has been accepted by <strong>Meta-Agents Workshop at NeurIPS 2026</strong>!",
     "links": [
       { "text": "arXiv", "url": "https://arxiv.org/abs/2610.32253" },
       { "text": "Workshop", "url": "https://meta-agents-workshop.github.io/" }

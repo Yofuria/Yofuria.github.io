@@ -289,8 +289,8 @@ function createPublicationItem(pub) {
     const line3 = document.createElement('div');
     line3.className = 'pub-line-3';
 
-    const venueFullName = getVenueFullName(pub.venue, pub.year);
-    const venueShortName = getVenueShortName(pub.venue, pub.year);
+    const venueFullName = pub.venueFullName || getVenueFullName(pub.venue, pub.year);
+    const venueShortName = pub.venueShortName || getVenueShortName(pub.venue, pub.year);
     const venueText = venueFullName || pub.venue || 'Preprint';
 
     const venueNameSpan = document.createElement('span');
