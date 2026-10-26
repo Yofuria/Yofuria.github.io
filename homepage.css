@@ -30,9 +30,10 @@
   #academic-homepage .ah-page strong { color: var(--ah-ink); font-weight: 500; }
   #academic-homepage .ah-nav { display: flex; gap: 24px; justify-content: flex-start; flex-wrap: wrap; padding-bottom: 30px; font-size: 13px; }
   #academic-homepage .ah-nav a { color: var(--ah-muted); }
-  #academic-homepage .ah-intro { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+  #academic-homepage .ah-intro { display: flex; align-items: stretch; justify-content: space-between; gap: 24px; }
   #academic-homepage .ah-intro-copy { flex: 1; min-width: 0; }
-  #academic-homepage .ah-portrait { display: block; width: 96px; height: 96px; flex: 0 0 96px; object-fit: cover; border-radius: 6px; color: var(--ah-muted); background: var(--ah-rule); font-size: 12px; }
+  #academic-homepage .ah-portrait-frame { position: relative; flex: 0 0 156px; }
+  #academic-homepage .ah-portrait { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 6px; color: var(--ah-muted); background: var(--ah-rule); font-size: 12px; }
   #academic-homepage .ah-page .ah-role { margin: 10px 0 1px; font-size: 14px; }
   #academic-homepage .ah-page .ah-affiliation { margin: 0; font-size: 14px; color: var(--ah-muted); }
   #academic-homepage .ah-profile-links { display: flex; flex-wrap: wrap; gap: 5px 20px; margin-top: 12px; font-size: 13px; }
@@ -70,14 +71,16 @@
   @media (max-width: 600px) {
     #academic-homepage .ah-page { padding: 22px 22px 26px; }
     #academic-homepage .ah-nav { gap: 8px 18px; padding-bottom: 26px; }
-    #academic-homepage .ah-intro { display: block; position: relative; }
-    #academic-homepage .ah-intro .ah-portrait { position: absolute; top: 0; right: 0; }
-    #academic-homepage .ah-intro-copy h1,
-    #academic-homepage .ah-intro-copy .ah-role { padding-right: 88px; }
+    #academic-homepage .ah-intro { display: grid; grid-template-columns: minmax(0, 1fr) 112px; gap: 0 16px; }
+    #academic-homepage .ah-intro-copy { display: contents; }
+    #academic-homepage .ah-intro-copy h1 { grid-column: 1; grid-row: 1; }
+    #academic-homepage .ah-intro .ah-role { grid-column: 1; grid-row: 2; }
+    #academic-homepage .ah-intro .ah-affiliation { grid-column: 1 / -1; grid-row: 3; margin-top: 12px; }
+    #academic-homepage .ah-intro .ah-profile-links { grid-column: 1 / -1; grid-row: 4; }
+    #academic-homepage .ah-portrait-frame { grid-column: 2; grid-row: 1 / 3; min-height: 116px; }
     #academic-homepage .ah-page h1 { font-size: 27px; }
     #academic-homepage .ah-page h1 span { display: block; margin: 4px 0 0; font-size: 17px; }
     #academic-homepage .ah-page h2 { font-size: 20px; }
-    #academic-homepage .ah-portrait { width: 72px; height: 72px; flex-basis: 72px; }
     #academic-homepage .ah-cv-entry { grid-template-columns: 40px minmax(0, 1fr); gap: 12px; }
     #academic-homepage .ah-institution-logo { width: 40px; height: 40px; }
     #academic-homepage .ah-cv-entry .ah-cv-heading { flex-direction: column; align-items: flex-start; gap: 0; }
