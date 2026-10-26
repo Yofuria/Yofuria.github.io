@@ -552,6 +552,10 @@ function getVenueShortName(venueStr, year) {
         return 'Preprint';
     }
 
+    if (/\bworkshop\b/i.test(venueStr)) {
+        return venueStr.trim();
+    }
+
     let revisionSuffix = '';
     if (venueStr.toLowerCase().includes('major revision')) {
         revisionSuffix = ', Major';
@@ -595,6 +599,10 @@ function getVenueShortName(venueStr, year) {
 function getVenueFullName(venueStr) {
     if (!venueStr) {
         return '';
+    }
+
+    if (/\bworkshop\b/i.test(venueStr)) {
+        return venueStr.trim();
     }
 
     const s = venueStr.replace(/\d{4}/g, '').trim();

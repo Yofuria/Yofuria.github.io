@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026.10",
+    "content": "Our co-first-authored paper \"RSIHub: A Composable Framework for Agent-Evolution Methods\" has been accepted by the <strong>First Workshop on Meta Agents: Managing Agents that Manage Agents at NeurIPS 2026</strong>!",
+    "links": [
+      { "text": "arXiv", "url": "https://arxiv.org/abs/2610.32253" },
+      { "text": "Workshop", "url": "https://meta-agents-workshop.github.io/" }
+    ]
+  },
+  {
     "date": "2026.01",
     "content": "One co-authored paper entitled \"PoliCon: Evaluating LLMs on Achieving Diverse Political Consensus Objectives\" has been accepted by <strong>ICLR 2026</strong>!",
     "links": [
