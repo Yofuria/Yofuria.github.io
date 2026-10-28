@@ -36,11 +36,11 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 ## 学术引用爬虫
 
-`.github/workflows/google_scholar_crawler.yaml` 每天 09:37 UTC（北京时间 17:37）运行，也支持手动运行。结果以 JSON 写入 `google-scholar-stats` 分支。爬虫使用 `GOOGLE_SCHOLAR_ID` secret，并支持可选的 `SCRAPERAPI_KEY` secret。
+`.github/workflows/google_scholar_crawler.yaml` 每天 03:00、15:00 UTC（北京时间 11:00、23:00）运行，较汇总更新提前一小时，也支持手动运行。结果以 JSON 写入 `google-scholar-stats` 分支。爬虫使用 `GOOGLE_SCHOLAR_ID` secret，并支持可选的 `SCRAPERAPI_KEY` secret。
 
 ## 引用与 Star 标签
 
-个人链接下方的小标签与 [GitHub 主页](https://github.com/Yofuria/Yofuria) 共用一份数据。GitHub 主页仓库每天 10:47 UTC（北京时间 18:47）运行。每次更新都比较 Google Scholar 缓存和 Semantic Scholar 作者 API 的引用次数，取较大值显示为 `Scholar citations`，不在标签上标注来源。点击标签跳转到对应的 Scholar 页面；两者相同时优先 Google Scholar。网站优先显示 `data/profile-metrics.json` 中的快照，再读取共享 JSON 同步刷新数字和跳转地址。某个 Scholar 取数失败时保留该来源上次有效的数据，不写成 0。
+个人链接下方的小标签与 [GitHub 主页](https://github.com/Yofuria/Yofuria) 共用一份数据。GitHub 主页仓库每天北京时间 00:00、12:00（UTC 16:00、04:00）运行。每次更新都比较 Google Scholar 缓存和 Semantic Scholar 作者 API 的引用次数，取较大值显示为 `Scholar citations`，不在标签上标注来源。点击标签跳转到对应的 Scholar 页面；两者相同时优先 Google Scholar。网站优先显示 `data/profile-metrics.json` 中的快照，再读取共享 JSON 同步刷新数字和跳转地址。某个 Scholar 取数失败时保留该来源上次有效的数据，不写成 0。
 
 `Project stars` 汇总两处主页列出的开源项目，包含组织仓库；按 GitHub 稳定仓库 ID 去重。点击标签跳转到 [GitHub 主页](https://github.com/Yofuria)。维护时可查看[统计范围和各项目明细](https://github.com/Yofuria/Yofuria/blob/main/metrics/README.md)；增删项目时，在 GitHub 主页仓库修改 `metrics/config.json`。某个来源获取失败时，保留其上次成功的数值和时间，不写成 0。
 

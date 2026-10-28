@@ -36,11 +36,11 @@ Commit the changed files and push to `main`. GitHub Pages deploys automatically.
 
 ## Citation crawler
 
-`.github/workflows/google_scholar_crawler.yaml` runs daily at 09:37 UTC (17:37 China time) and can also be run manually. It writes citation JSON to the `google-scholar-stats` branch. The crawler uses the `GOOGLE_SCHOLAR_ID` secret and the optional `SCRAPERAPI_KEY` secret.
+`.github/workflows/google_scholar_crawler.yaml` runs twice daily at 03:00 and 15:00 UTC (11:00 and 23:00 China time), one hour before the metrics updates, and can also be run manually. It writes citation JSON to the `google-scholar-stats` branch. The crawler uses the `GOOGLE_SCHOLAR_ID` secret and the optional `SCRAPERAPI_KEY` secret.
 
 ## Profile metrics
 
-The small labels under the profile links share their data with the [GitHub profile](https://github.com/Yofuria/Yofuria). The profile repository generates `metrics/stats.json` and light/dark SVG badges daily at 10:47 UTC (18:47 China time). On every update it compares the existing Google Scholar cache with the Semantic Scholar author API and displays the larger count as **Scholar citations**. The label links to the corresponding Scholar profile; ties prefer Google Scholar. The website reads the selected count and destination from the shared JSON and retains an embedded snapshot in `data/profile-metrics.json` if the live source is unavailable.
+The small labels under the profile links share their data with the [GitHub profile](https://github.com/Yofuria/Yofuria). The profile repository generates `metrics/stats.json` and light/dark SVG badges twice daily at 00:00 and 12:00 China time (16:00 and 04:00 UTC). On every update it compares the existing Google Scholar cache with the Semantic Scholar author API and displays the larger count as **Scholar citations**. The label links to the corresponding Scholar profile; ties prefer Google Scholar. The website reads the selected count and destination from the shared JSON and retains an embedded snapshot in `data/profile-metrics.json` if the live source is unavailable.
 
 **Project stars** is the sum across the listed open-source projects, including organization repositories. Repositories are deduplicated by their stable GitHub ID. Clicking the label opens the [GitHub profile](https://github.com/Yofuria). The [scope and per-project counts](https://github.com/Yofuria/Yofuria/blob/main/metrics/README.md) remain available for maintenance; edit `metrics/config.json` in the profile repository when adding or removing projects. A failed source retains its last successful value and timestamp.
 
