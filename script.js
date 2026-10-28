@@ -10,10 +10,47 @@ document.addEventListener('DOMContentLoaded', function() {
     makeAllLinksOpenInNewTab();
     setupLinkObserver();
 
+    loadProfileMetrics();
     loadNews();
     loadHonors();
     loadPublications();
 });
+
+async function loadProfileMetrics() {
+    const fields = document.querySelectorAll('[data-profile-metric]');
+    if (!fields.length) return;
+
+    const sources = [
+        getDataPath('profile-metrics.json'),
+        'https://raw.githubusercontent.com/Yofuria/Yofuria/main/metrics/stats.json'
+    ];
+    for (const source of sources) {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 8000);
+        try {
+            const response = await fetch(source, { signal: controller.signal });
+            const stats = await handleJsonResponse(response);
+            fields.forEach(field => {
+                const key = field.dataset.profileMetric;
+                const metric = stats[key];
+                if (!metric || !Number.isSafeInteger(metric.value) || metric.value < 0) return;
+                field.textContent = metric.value.toLocaleString('en-US');
+                const link = document.querySelector(`[data-metric-link="${key}"]`);
+                const date = new Date(metric.updatedAt);
+                const updated = Number.isNaN(date.getTime()) ? '' : ` Last successful update: ${date.toISOString().slice(0, 10)} (UTC).`;
+                const description = key === 'citations'
+                    ? 'Total citations on Google Scholar.'
+                    : `Total stars across ${metric.repositories.length} listed open-source projects, including organization repositories. Each repository is counted once.`;
+                if (link) link.title = description + updated;
+            });
+        } catch (error) {
+            // The embedded snapshot remains visible if either source is unavailable.
+            console.warn('Could not refresh profile metrics:', source, error.name);
+        } finally {
+            clearTimeout(timeout);
+        }
+    }
+}
 
 function setupMobileMenu() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');

@@ -38,6 +38,12 @@ Commit the changed files and push to `main`. GitHub Pages deploys automatically.
 
 `.github/workflows/google_scholar_crawler.yaml` runs daily at 09:37 UTC (17:37 China time) and can also be run manually. It writes citation JSON to the `google-scholar-stats` branch. The crawler uses the `GOOGLE_SCHOLAR_ID` secret and the optional `SCRAPERAPI_KEY` secret.
 
+## Profile metrics
+
+The small labels under the profile links share their data with the [GitHub profile](https://github.com/Yofuria/Yofuria). The profile repository generates `metrics/stats.json` and light/dark SVG badges daily at 10:47 UTC (18:47 China time), using the existing Scholar cache and GitHub's repository API. The website reads that shared JSON and retains an embedded snapshot in `data/profile-metrics.json` if the live source is unavailable.
+
+**Project stars** is the sum across the listed open-source projects, including organization repositories. Repositories are deduplicated by their stable GitHub ID. The [scope and per-project counts](https://github.com/Yofuria/Yofuria/blob/main/metrics/README.md) are linked from the label; edit `metrics/config.json` in the profile repository when adding or removing projects. A failed source retains its last successful value and timestamp.
+
 ## Template acknowledgments
 
 The site retains a credit to [AcaNova-X](https://github.com/yihangtao/AcaNova-X). Original AcadHomepage acknowledgments:

@@ -46,7 +46,7 @@
     "thumbnail": "assets/publications/hippocampus/thumb.png",
     "tags": [
       { "text": "Paper", "link": "https://arxiv.org/abs/2601.09113" },
-      { "text": "Code", "link": "https://github.com/bigai-nlco/LLM-Memory-Survey" }
+      { "text": "Code", "link": "https://github.com/bigai-nlco/Awesome-AI-Memory" }
     ]
   },
   {
