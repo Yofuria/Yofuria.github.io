@@ -44,7 +44,7 @@ async function loadProfileMetrics() {
                 const date = new Date(metric.updatedAt);
                 const updated = Number.isNaN(date.getTime()) ? '' : ` Last successful update: ${date.toISOString().slice(0, 10)} (UTC).`;
                 const description = key === 'citations'
-                    ? 'Citations.'
+                    ? 'Scholar citations.'
                     : `Total stars across ${metric.repositories.length} listed open-source projects, including organization repositories. Each repository is counted once.`;
                 if (link) {
                     link.title = description + updated;
