@@ -24,6 +24,10 @@ async function loadProfileMetrics() {
         getDataPath('profile-metrics.json'),
         'https://raw.githubusercontent.com/Yofuria/Yofuria/main/metrics/stats.json'
     ];
+    const citationProfiles = new Set([
+        'https://scholar.google.com/citations?user=GNO0HzAAAAAJ',
+        'https://www.semanticscholar.org/author/Xiaobo-Wang/2297250786'
+    ]);
     for (const source of sources) {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 8000);
@@ -34,14 +38,18 @@ async function loadProfileMetrics() {
                 const key = field.dataset.profileMetric;
                 const metric = stats[key];
                 if (!metric || !Number.isSafeInteger(metric.value) || metric.value < 0) return;
+                if (key === 'citations' && !citationProfiles.has(metric.url)) return;
                 field.textContent = metric.value.toLocaleString('en-US');
                 const link = document.querySelector(`[data-metric-link="${key}"]`);
                 const date = new Date(metric.updatedAt);
                 const updated = Number.isNaN(date.getTime()) ? '' : ` Last successful update: ${date.toISOString().slice(0, 10)} (UTC).`;
                 const description = key === 'citations'
-                    ? 'Total citations on Google Scholar.'
+                    ? 'Citations.'
                     : `Total stars across ${metric.repositories.length} listed open-source projects, including organization repositories. Each repository is counted once.`;
-                if (link) link.title = description + updated;
+                if (link) {
+                    link.title = description + updated;
+                    if (key === 'citations') link.href = metric.url;
+                }
             });
         } catch (error) {
             // The embedded snapshot remains visible if either source is unavailable.

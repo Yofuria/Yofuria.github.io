@@ -40,7 +40,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 ## 引用与 Star 标签
 
-个人链接下方的小标签与 [GitHub 主页](https://github.com/Yofuria/Yofuria) 共用一份数据。GitHub 主页仓库每天 10:47 UTC（北京时间 18:47）读取现有 Scholar 缓存及 GitHub 仓库 API，生成 `metrics/stats.json` 和明暗两套 SVG 标签。网站优先显示 `data/profile-metrics.json` 中的快照，再读取共享 JSON 刷新。
+个人链接下方的小标签与 [GitHub 主页](https://github.com/Yofuria/Yofuria) 共用一份数据。GitHub 主页仓库每天 10:47 UTC（北京时间 18:47）运行。每次更新都比较 Google Scholar 缓存和 Semantic Scholar 作者 API 的引用次数，取较大值显示为 `Citations`，不在标签上标注来源。点击标签跳转到对应的 Scholar 页面；两者相同时优先 Google Scholar。网站优先显示 `data/profile-metrics.json` 中的快照，再读取共享 JSON 同步刷新数字和跳转地址。某个 Scholar 取数失败时保留该来源上次有效的数据，不写成 0。
 
 `Project stars` 汇总两处主页列出的开源项目，包含组织仓库；按 GitHub 稳定仓库 ID 去重。点击标签可查看[统计范围和各项目明细](https://github.com/Yofuria/Yofuria/blob/main/metrics/README.md)。增删项目时，在 GitHub 主页仓库修改 `metrics/config.json`。某个来源获取失败时，保留其上次成功的数值和时间，不写成 0。
 
