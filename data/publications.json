@@ -50,12 +50,26 @@
     ]
   },
   {
+    "title": "Beneath the Surface: What We Overlook When We Talk About Agent Evolution",
+    "authors": "<strong>Xiaobo Wang*</strong>, Zimu Wang*, Siyu Ye*, Jiaqi Li*, Min Tang, Jun Bai, Yuling Shi, Ruobing Wang, Jingjing Zhang, Chaofan Wang, Kai Wu, Mengnan Qi, Kai Cai, Xiaodong Gu, Qi Liu, Zilong Zheng",
+    "type": "preprint",
+    "isFirstAuthor": true,
+    "showOnHomepage": true,
+    "featuredOrder": 3,
+    "venue": "arXiv",
+    "year": "2026",
+    "tags": [
+      { "text": "Paper", "link": "https://arxiv.org/abs/2611.07624" },
+      { "text": "Code", "link": "https://github.com/simple-agent-lab/RSIHub" }
+    ]
+  },
+  {
     "title": "The Flip Side of RLHF: On-Policy Feedback for Reward Model Self-Supervised Improvement",
     "authors": "<strong>Xiaobo Wang</strong>, Tong Wu, Min Tang, Jiaqi Li, Qi Liu, Zilong Zheng",
     "type": "preprint",
     "isFirstAuthor": true,
     "showOnHomepage": true,
-    "featuredOrder": 3,
+    "featuredOrder": 4,
     "venue": "Under Review",
     "year": "2026",
     "thumbnail": "assets/publications/save/thumb.png",
@@ -71,7 +85,7 @@
     "type": "accepted",
     "isFirstAuthor": true,
     "showOnHomepage": true,
-    "featuredOrder": 4,
+    "featuredOrder": 5,
     "venue": "EMNLP 2025",
     "year": "2025",
     "thumbnail": "assets/publications/uapo/thumb.png",
@@ -86,7 +100,7 @@
     "type": "preprint",
     "isFirstAuthor": true,
     "showOnHomepage": true,
-    "featuredOrder": 5,
+    "featuredOrder": 6,
     "venue": "Under Review",
     "year": "2024",
     "thumbnail": "assets/publications/ram/thumb.png",
