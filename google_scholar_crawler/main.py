@@ -1,12 +1,7 @@
 """Fetch Google Scholar stats and write them to results/*.json.
 
-Robustness notes:
-- Google Scholar frequently blocks requests coming from shared CI IPs.
-  Strategy: use ScraperAPI when SCRAPERAPI_KEY is set (most reliable),
-  then fall back to a direct request and rotating free proxies.
-- If every attempt fails we write NOTHING and exit 0, so the workflow can
-  skip the publish step and keep the last good data instead of overwriting
-  it with garbage / breaking the citations badge.
+Use ScraperAPI when configured, with direct requests and free proxies as
+fallbacks. A failed crawl exits before the workflow publishes any files.
 """
 
 import json
@@ -26,6 +21,12 @@ FREE_PROXY_ATTEMPTS = 6
 def fetch_author():
     author = scholarly.search_author_id(SCHOLAR_ID)
     scholarly.fill(author, sections=["basics", "indices", "counts", "publications"])
+    if author.get("scholar_id") != SCHOLAR_ID:
+        raise ValueError("Google Scholar returned a different author profile")
+    citations = author.get("citedby")
+    if type(citations) is not int or citations < 0:
+        raise ValueError("Google Scholar returned an invalid citation count")
+    author["publications"] = {p["author_pub_id"]: p for p in author["publications"]}
     return author
 
 
@@ -38,7 +39,9 @@ def fetch_with_retries():
                 if not pg.ScraperAPI(SCRAPERAPI_KEY):
                     print(f"[scraperapi {attempt}] setup returned False", file=sys.stderr)
                     continue
-                scholarly.use_proxy(pg)
+                # A single argument makes scholarly initialize a free proxy
+                # for author pages, even when ScraperAPI is already available.
+                scholarly.use_proxy(pg, pg)
                 print(f"[scraperapi {attempt}] fetching...", file=sys.stderr)
                 return fetch_author()
             except Exception as e:  # noqa: BLE001
@@ -48,6 +51,8 @@ def fetch_with_retries():
 
     # 2) Direct attempt — fast when the runner IP isn't blocked.
     try:
+        direct = ProxyGenerator()
+        scholarly.use_proxy(direct, direct)
         print("[direct] fetching...", file=sys.stderr)
         return fetch_author()
     except Exception as e:  # noqa: BLE001
@@ -60,7 +65,7 @@ def fetch_with_retries():
             if not pg.FreeProxies():
                 print(f"[freeproxy {attempt}] no free proxy available", file=sys.stderr)
                 continue
-            scholarly.use_proxy(pg)
+            scholarly.use_proxy(pg, pg)
             print(f"[freeproxy {attempt}] got proxy, fetching...", file=sys.stderr)
             return fetch_author()
         except Exception as e:  # noqa: BLE001
@@ -72,18 +77,13 @@ def fetch_with_retries():
 def main():
     author = fetch_with_retries()
 
-    # Validate before writing anything.
-    if not author or "citedby" not in author:
-        print(
+    if author is None:
+        raise SystemExit(
             "Could not fetch valid Google Scholar data after all retries. "
-            "Leaving existing data untouched.",
-            file=sys.stderr,
+            "Keeping the last published data."
         )
-        # Exit 0 so the workflow succeeds (no red X) and simply skips publish.
-        sys.exit(0)
 
     author["updated"] = str(datetime.now())
-    author["publications"] = {v["author_pub_id"]: v for v in author["publications"]}
 
     os.makedirs(OUT_DIR, exist_ok=True)
     with open(os.path.join(OUT_DIR, "gs_data.json"), "w") as f:

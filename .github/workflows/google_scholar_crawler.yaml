@@ -37,11 +37,12 @@ jobs:
 
       - name: Publish to google-scholar-stats branch
         run: |
-          cd google_scholar_crawler/results
-          if [ ! -f gs_data_shieldsio.json ]; then
-            echo "No data produced (crawl likely blocked). Keeping existing data."
-            exit 0
+          results=google_scholar_crawler/results
+          if [ ! -s "$results/gs_data.json" ] || [ ! -s "$results/gs_data_shieldsio.json" ]; then
+            echo "::error::Citation data is incomplete. Keeping the last published data."
+            exit 1
           fi
+          cd "$results"
           git init -q
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
