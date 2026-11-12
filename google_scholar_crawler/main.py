@@ -35,21 +35,21 @@ class FetchedProfile:
         return self.soup
 
 
-def fetch_profile(scholar_id, *, api_key=None, country_code=None):
+def fetch_profile(scholar_id, *, api_key=None):
     # The public profile route starts with user=, as allowed by Scholar's robots.txt.
     profile_query = {"user": scholar_id, "hl": "en"}
-    if api_key and not country_code:
-        profile_query["pagesize"] = 100
     profile_url = "https://scholar.google.com/citations?" + urlencode(profile_query)
 
     url = profile_url
     timeout = 20
     headers = {"Accept": "text/html", "Accept-Language": "en-US,en;q=0.9"}
     if api_key:
-        options = {"api_key": api_key}
-        if country_code:
-            options["country_code"] = country_code
-        options["url"] = profile_url
+        options = {
+            "api_key": api_key,
+            "premium": "true",
+            "max_cost": 35,
+            "url": profile_url,
+        }
         url = "https://api.scraperapi.com/?" + urlencode(options)
         timeout = 75
     else:
@@ -86,14 +86,14 @@ def parse_author(html, scholar_id):
 
 
 def fetch_author(scholar_id, api_key):
-    sources = [("direct", None, None)]
+    sources = [("direct", None)]
     if api_key:
-        sources.extend([("scraperapi", api_key, None), ("scraperapi-us", api_key, "us")])
+        sources.append(("scraperapi-premium", api_key))
 
-    for label, key, country_code in sources:
+    for label, key in sources:
         print(f"[{label}] fetching public profile...", file=sys.stderr)
         try:
-            html = fetch_profile(scholar_id, api_key=key, country_code=country_code)
+            html = fetch_profile(scholar_id, api_key=key)
         except RuntimeError as error:
             print(f"[{label}] failed: {error}", file=sys.stderr)
             continue

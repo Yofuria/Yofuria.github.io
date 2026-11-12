@@ -14,8 +14,7 @@ concurrency:
 
 jobs:
   build:
-    # Use the macOS runner network for requests to the public Scholar profile.
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
