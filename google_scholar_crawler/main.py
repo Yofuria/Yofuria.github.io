@@ -1,112 +1,107 @@
 """Fetch Google Scholar stats and write them to results/*.json.
 
-Use ScraperAPI when configured, with direct requests and free proxies as
-fallbacks. A failed crawl exits before the workflow publishes any files.
+Read the public author page via ScraperAPI or a bounded direct request.
+A failed crawl exits before the workflow publishes any files.
 """
 
 import json
 import logging
 import os
 import sys
-from datetime import datetime
-from urllib.error import HTTPError, URLError
+from datetime import datetime, timezone
+from http.client import HTTPException
+from urllib.error import HTTPError
 from urllib.parse import urlencode
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 from bs4 import BeautifulSoup
-from scholarly import scholarly, ProxyGenerator
 from scholarly.author_parser import AuthorParser
 
-SCHOLAR_ID = os.environ["GOOGLE_SCHOLAR_ID"]
-SCRAPERAPI_KEY = os.environ.get("SCRAPERAPI_KEY")
 OUT_DIR = "results"
-SCRAPERAPI_ATTEMPTS = 3
-FREE_PROXY_ATTEMPTS = 6
-AUTHOR_SECTIONS = ["basics", "indices", "counts", "publications"]
 
 
-class ScraperAPIPages:
-    """Serve the existing author parser with pages from ScraperAPI's HTTPS endpoint."""
+class FetchedProfile:
+    """Let AuthorParser reuse the one public page already fetched."""
 
-    def __init__(self, key):
-        self.key = key
+    def __init__(self, html):
+        self.soup = BeautifulSoup(html.replace("\xa0", " "), "html.parser")
         self.logger = logging.getLogger(__name__)
 
-    def _get_soup(self, path):
-        query = urlencode({"api_key": self.key, "url": f"https://scholar.google.com{path}"})
-        try:
-            with urlopen(f"https://api.scraperapi.com/?{query}", timeout=75) as response:
-                html = response.read().decode("utf-8", errors="replace")
-        except HTTPError as error:
-            raise RuntimeError(f"ScraperAPI returned HTTP {error.code}") from None
-        except (URLError, TimeoutError):
-            raise RuntimeError("ScraperAPI request failed or timed out") from None
-        return BeautifulSoup(html.replace("\xa0", " "), "html.parser")
+    def _get_soup(self, _path):
+        return self.soup
 
 
-def validate_author(author):
-    if author.get("scholar_id") != SCHOLAR_ID:
+def fetch_profile(scholar_id, *, api_key=None, country_code=None):
+    # The public profile route starts with user=, as allowed by Scholar's robots.txt.
+    profile_query = {"user": scholar_id, "hl": "en"}
+    if api_key and not country_code:
+        profile_query["pagesize"] = 100
+    profile_url = "https://scholar.google.com/citations?" + urlencode(profile_query)
+
+    url = profile_url
+    timeout = 20
+    if api_key:
+        options = {"api_key": api_key}
+        if country_code:
+            options["country_code"] = country_code
+        options["url"] = profile_url
+        url = "https://api.scraperapi.com/?" + urlencode(options)
+        timeout = 75
+
+    request = Request(url, headers={"Accept": "text/html"})
+    try:
+        with urlopen(request, timeout=timeout) as response:
+            return response.read().decode("utf-8", errors="replace")
+    except HTTPError as error:
+        raise RuntimeError(f"HTTP {error.code}") from None
+    except (OSError, HTTPException):
+        raise RuntimeError("Request failed or timed out") from None
+
+
+def parse_author(html, scholar_id):
+    profile = FetchedProfile(html)
+    parser = AuthorParser(profile)
+    author = parser.get_author(scholar_id)
+    sections = ["basics", "indices", "counts"]
+    rows = profile.soup.select("tr.gsc_a_tr")
+    if rows:
+        sections.append("publications")
+    author = parser.fill(author, sections=sections, publication_limit=len(rows))
+
+    if author.get("scholar_id") != scholar_id:
         raise ValueError("Google Scholar returned a different author profile")
     citations = author.get("citedby")
     if type(citations) is not int or citations < 0:
         raise ValueError("Google Scholar returned an invalid citation count")
-    author["publications"] = {p["author_pub_id"]: p for p in author["publications"]}
+    author["publications"] = {p["author_pub_id"]: p for p in author.get("publications", [])}
     return author
 
 
-def fetch_author():
-    author = scholarly.search_author_id(SCHOLAR_ID)
-    return validate_author(scholarly.fill(author, sections=AUTHOR_SECTIONS))
+def fetch_author(scholar_id, api_key):
+    sources = []
+    if api_key:
+        sources = [("scraperapi", api_key, None), ("scraperapi-us", api_key, "us")]
+    sources.append(("direct", None, None))
 
-
-def fetch_with_retries():
-    if SCRAPERAPI_KEY:
-        parser = AuthorParser(ScraperAPIPages(SCRAPERAPI_KEY))
-        for attempt in range(1, SCRAPERAPI_ATTEMPTS + 1):
-            try:
-                print(f"[scraperapi {attempt}] fetching via HTTPS...", file=sys.stderr)
-                author = parser.get_author(SCHOLAR_ID)
-                return validate_author(parser.fill(author, sections=AUTHOR_SECTIONS))
-            except Exception as e:  # noqa: BLE001
-                print(f"[scraperapi {attempt}] failed: {e}", file=sys.stderr)
-    else:
-        print("SCRAPERAPI_KEY not set; using direct + free proxies.", file=sys.stderr)
-
-    # Passing both arguments prevents scholarly from initializing a free proxy.
-    try:
-        direct = ProxyGenerator()
-        scholarly.use_proxy(direct, direct)
-        print("[direct] fetching...", file=sys.stderr)
-        return fetch_author()
-    except Exception as e:  # noqa: BLE001
-        print(f"[direct] failed: {e}", file=sys.stderr)
-
-    # Rotate free proxies as a last resort.
-    for attempt in range(1, FREE_PROXY_ATTEMPTS + 1):
+    for label, key, country_code in sources:
+        print(f"[{label}] fetching public profile...", file=sys.stderr)
         try:
-            pg = ProxyGenerator()
-            if not pg.FreeProxies():
-                print(f"[freeproxy {attempt}] no free proxy available", file=sys.stderr)
-                continue
-            scholarly.use_proxy(pg, pg)
-            print(f"[freeproxy {attempt}] got proxy, fetching...", file=sys.stderr)
-            return fetch_author()
-        except Exception as e:  # noqa: BLE001
-            print(f"[freeproxy {attempt}] failed: {e}", file=sys.stderr)
+            html = fetch_profile(scholar_id, api_key=key, country_code=country_code)
+        except RuntimeError as error:
+            print(f"[{label}] failed: {error}", file=sys.stderr)
+            continue
 
-    return None
+        try:
+            return parse_author(html, scholar_id)
+        except (AttributeError, IndexError, KeyError, TypeError, ValueError) as error:
+            print(f"[{label}] invalid author profile ({type(error).__name__})", file=sys.stderr)
+
+    raise SystemExit("Could not fetch valid Google Scholar data. Keeping the last published data.")
 
 
 def main():
-    author = fetch_with_retries()
-
-    if author is None:
-        raise SystemExit(
-            "Could not fetch valid Google Scholar data after all retries. "
-            "Keeping the last published data."
-        )
-
-    author["updated"] = str(datetime.now())
+    author = fetch_author(os.environ["GOOGLE_SCHOLAR_ID"].strip(), os.environ.get("SCRAPERAPI_KEY"))
+    author["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
     os.makedirs(OUT_DIR, exist_ok=True)
     with open(os.path.join(OUT_DIR, "gs_data.json"), "w") as f:
