@@ -1,6 +1,6 @@
 """Fetch Google Scholar stats and write them to results/*.json.
 
-Read the public author page via ScraperAPI or a bounded direct request.
+Read the public author page directly, with ScraperAPI as a fallback.
 A failed crawl exits before the workflow publishes any files.
 """
 
@@ -18,6 +18,10 @@ from bs4 import BeautifulSoup
 from scholarly.author_parser import AuthorParser
 
 OUT_DIR = "results"
+SCHOLAR_USER_AGENT = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+)
 
 
 class FetchedProfile:
@@ -40,6 +44,7 @@ def fetch_profile(scholar_id, *, api_key=None, country_code=None):
 
     url = profile_url
     timeout = 20
+    headers = {"Accept": "text/html", "Accept-Language": "en-US,en;q=0.9"}
     if api_key:
         options = {"api_key": api_key}
         if country_code:
@@ -47,11 +52,14 @@ def fetch_profile(scholar_id, *, api_key=None, country_code=None):
         options["url"] = profile_url
         url = "https://api.scraperapi.com/?" + urlencode(options)
         timeout = 75
+    else:
+        headers["User-Agent"] = SCHOLAR_USER_AGENT
 
-    request = Request(url, headers={"Accept": "text/html"})
+    request = Request(url, headers=headers)
     try:
         with urlopen(request, timeout=timeout) as response:
-            return response.read().decode("utf-8", errors="replace")
+            encoding = response.headers.get_content_charset() or "utf-8"
+            return response.read().decode(encoding, errors="replace")
     except HTTPError as error:
         raise RuntimeError(f"HTTP {error.code}") from None
     except (OSError, HTTPException):
@@ -78,10 +86,9 @@ def parse_author(html, scholar_id):
 
 
 def fetch_author(scholar_id, api_key):
-    sources = []
+    sources = [("direct", None, None)]
     if api_key:
-        sources = [("scraperapi", api_key, None), ("scraperapi-us", api_key, "us")]
-    sources.append(("direct", None, None))
+        sources.extend([("scraperapi", api_key, None), ("scraperapi-us", api_key, "us")])
 
     for label, key, country_code in sources:
         print(f"[{label}] fetching public profile...", file=sys.stderr)

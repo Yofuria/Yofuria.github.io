@@ -46,8 +46,6 @@
   #academic-homepage .ah-interests { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; padding: 0; list-style: none; }
   #academic-homepage .ah-interests li { color: var(--ah-ink); }
   #academic-homepage .ah-motto { color: var(--ah-muted); font-style: italic; }
-  #academic-homepage .ah-research-direction { margin-top: 20px; }
-  #academic-homepage .ah-research-direction p { margin-top: 5px; }
   #academic-homepage .ah-section-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 5px 12px; }
   #academic-homepage .ah-section-heading > a { font-size: 13px; }
   #academic-homepage .ah-page .ah-note { margin: 0 0 4px; color: var(--ah-muted); font-size: 13px; }
