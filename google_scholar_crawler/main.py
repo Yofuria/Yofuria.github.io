@@ -1,6 +1,6 @@
 """Fetch Google Scholar stats and write them to results/*.json.
 
-Read the public author page directly, with ScraperAPI as a fallback.
+Read the public author page directly, with configured API fallbacks.
 A failed crawl exits before the workflow publishes any files.
 """
 
@@ -35,26 +35,12 @@ class FetchedProfile:
         return self.soup
 
 
-def fetch_profile(scholar_id, *, api_key=None):
-    # The public profile route starts with user=, as allowed by Scholar's robots.txt.
-    profile_query = {"user": scholar_id, "hl": "en"}
-    profile_url = "https://scholar.google.com/citations?" + urlencode(profile_query)
-
-    url = profile_url
-    timeout = 20
-    headers = {"Accept": "text/html", "Accept-Language": "en-US,en;q=0.9"}
-    if api_key:
-        options = {
-            "api_key": api_key,
-            "premium": "true",
-            "max_cost": 35,
-            "url": profile_url,
-        }
-        url = "https://api.scraperapi.com/?" + urlencode(options)
-        timeout = 75
-    else:
-        headers["User-Agent"] = SCHOLAR_USER_AGENT
-
+def fetch_page(url, timeout):
+    headers = {
+        "Accept": "text/html",
+        "Accept-Language": "en-US,en;q=0.9",
+        "User-Agent": SCHOLAR_USER_AGENT,
+    }
     request = Request(url, headers=headers)
     try:
         with urlopen(request, timeout=timeout) as response:
@@ -85,15 +71,29 @@ def parse_author(html, scholar_id):
     return author
 
 
-def fetch_author(scholar_id, api_key):
-    sources = [("direct", None)]
-    if api_key:
-        sources.append(("scraperapi-premium", api_key))
+def fetch_author(scholar_id, *, serpapi_key=None, scraperapi_key=None):
+    # The public profile route starts with user=, as allowed by Scholar's robots.txt.
+    profile_url = "https://scholar.google.com/citations?" + urlencode({"user": scholar_id, "hl": "en"})
+    sources = [("direct", profile_url, 20)]
 
-    for label, key in sources:
+    if serpapi_key:
+        query = urlencode({
+            "engine": "google_scholar_author",
+            "author_id": scholar_id,
+            "hl": "en",
+            "output": "html",
+            "api_key": serpapi_key,
+        })
+        sources.append(("serpapi", "https://serpapi.com/search?" + query, 45))
+
+    if scraperapi_key:
+        query = urlencode({"api_key": scraperapi_key, "max_cost": 25, "url": profile_url})
+        sources.append(("scraperapi", "https://api.scraperapi.com/?" + query, 75))
+
+    for label, url, timeout in sources:
         print(f"[{label}] fetching public profile...", file=sys.stderr)
         try:
-            html = fetch_profile(scholar_id, api_key=key)
+            html = fetch_page(url, timeout)
         except RuntimeError as error:
             print(f"[{label}] failed: {error}", file=sys.stderr)
             continue
@@ -107,7 +107,11 @@ def fetch_author(scholar_id, api_key):
 
 
 def main():
-    author = fetch_author(os.environ["GOOGLE_SCHOLAR_ID"].strip(), os.environ.get("SCRAPERAPI_KEY"))
+    author = fetch_author(
+        os.environ["GOOGLE_SCHOLAR_ID"].strip(),
+        serpapi_key=os.environ.get("SERPAPI_KEY"),
+        scraperapi_key=os.environ.get("SCRAPERAPI_KEY"),
+    )
     author["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
     os.makedirs(OUT_DIR, exist_ok=True)

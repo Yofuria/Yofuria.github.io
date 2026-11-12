@@ -36,7 +36,7 @@ Commit the changed files and push to `main`. GitHub Pages deploys automatically.
 
 ## Citation crawler
 
-`.github/workflows/google_scholar_crawler.yaml` runs twice daily at 03:00 and 15:00 UTC (11:00 and 23:00 China time), one hour before the metrics updates, and can also be run manually. It writes citation JSON to the `google-scholar-stats` branch. The crawler uses the `GOOGLE_SCHOLAR_ID` secret and the optional `SCRAPERAPI_KEY` secret.
+`.github/workflows/google_scholar_crawler.yaml` runs twice daily at 03:00 and 15:00 UTC (11:00 and 23:00 China time), one hour before the metrics updates, and can also be run manually. It writes citation JSON to the `google-scholar-stats` branch. The crawler uses the `GOOGLE_SCHOLAR_ID` secret to read the public profile. If direct access fails, it tries the Google Scholar Author API when `SERPAPI_KEY` is set, followed by ScraperAPI when `SCRAPERAPI_KEY` is set. A failed crawl leaves the last published snapshot available. [Google Scholar Author API](https://serpapi.com/google-scholar-author-api)
 
 ## Profile metrics
 
