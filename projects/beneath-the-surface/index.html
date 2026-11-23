@@ -16,7 +16,7 @@
   <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
   <script src="../../theme.js?v=20261123"></script>
   <link rel="stylesheet" href="../../homepage.css?v=20261123-offwhite">
-  <link rel="stylesheet" href="project.css">
+  <link rel="stylesheet" href="project.css?v=20261123-results">
   <script src="../../script.js?v=20261028-scholars-label" defer></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0J0FVEM5MD"></script>
   <script>
@@ -73,7 +73,8 @@
               <a href="https://arxiv.org/abs/2611.07624">arXiv</a>
               <a href="https://arxiv.org/pdf/2611.07624">PDF</a>
               <a href="https://github.com/simple-agent-lab/RSIHub">Code (RSIHub)</a>
-              <a href="citation.bib" download>BibTeX</a>
+              <a href="#results">Results</a>
+              <a href="#bibtex">BibTeX</a>
             </div>
           </header>
 
@@ -113,7 +114,52 @@
               </a>
               <figcaption>EvoAudit tests proposed changes against recorded evidence and regression checks before admitting a revision. <a href="https://arxiv.org/html/2611.07624v1#S7.F4">Figure 4 in the paper.</a></figcaption>
             </figure>
-            <p>We applied all four revisions to A-Evolve to create <strong>Audit-Guided Evolution (AGE)</strong>. Across both harnesses and both benchmarks, AGE improved average success and task coverage over A-Evolve. On Terminal-Bench 2 with Codex, it reached 73.5% average success and covered 92.1% of tasks in eight attempts. <a href="https://arxiv.org/html/2611.07624v1#S7.T10">See the comparison in Table 10.</a></p>
+            <p>We combined the four revisions in A-Evolve to create <strong>Audit-Guided Evolution (AGE)</strong>. Its diagnosis uses records of tool calls, their outcomes, and whether the task finished. When proposing an edit, AGE checks which other parts of the harness depend on it. Its gate accepts a candidate that outscores its parent, or one that ties its parent at a verifiably lower evaluation cost.</p>
+          </section>
+
+          <section class="ah-section" id="results">
+            <h2>Results across both benchmarks</h2>
+            <p>Each method had 20 generations to evolve the harness. We then ran each task eight times with the selected agent. Average success is the percentage of attempts that succeeded. Coverage is the percentage of tasks solved at least once.</p>
+            <table class="age-results">
+              <caption>Each pair shows A-Evolve → AGE. All values are percentages.</caption>
+              <thead>
+                <tr><th scope="col">Benchmark and harness</th><th scope="col">Average success</th><th scope="col">Coverage</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">τ³-Banking <span>MiniSWE</span></th><td>26.3 → 34.0</td><td>55.7 → 66.0</td></tr>
+                <tr><th scope="row">τ³-Banking <span>Codex</span></th><td>28.1 → 38.1</td><td>57.7 → 67.0</td></tr>
+                <tr><th scope="row">Terminal-Bench 2 <span>MiniSWE</span></th><td>68.0 → 71.8</td><td>86.5 → 89.9</td></tr>
+                <tr><th scope="row">Terminal-Bench 2 <span>Codex</span></th><td>68.0 → 73.5</td><td>87.6 → 92.1</td></tr>
+              </tbody>
+            </table>
+            <p>AGE improved both measures in all four comparisons. It also lost fewer of the starting agent’s tasks than A-Evolve in three settings and lost the same number in the fourth. <a href="https://arxiv.org/html/2611.07624v1#S7.T10">Full results and costs in Table 10.</a></p>
+          </section>
+
+          <section class="ah-section" id="conclusion">
+            <h2>Conclusion</h2>
+            <p>Before replacing an agent, it helps to know which familiar tasks it may lose, which new ones it can solve, and what it costs to reach the same coverage. These trade-offs change when the agent moves to another benchmark. The eight attempts in this study measure how reliably a fixed agent performs. Each AGE search used one random seed, so further searches would be needed to establish how often evolution finds the same improvements.</p>
+          </section>
+
+          <section class="ah-section" id="bibtex">
+            <div class="ah-bibtex-heading">
+              <h2>BibTeX</h2>
+              <div class="citation-actions">
+                <button class="ah-copy-bibtex" id="copy-citation" type="button" hidden>Copy BibTeX</button>
+                <a href="citation.bib" download>Download .bib</a>
+              </div>
+            </div>
+            <pre class="ah-bibtex"><code id="citation-entry">@misc{wang2026beneath,
+  title = {Beneath the Surface: What We Overlook When We Talk About Agent Evolution},
+  author = {Wang, Xiaobo and Wang, Zimu and Ye, Siyu and Li, Jiaqi and
+            Tang, Min and Bai, Jun and Shi, Yuling and Wang, Ruobing and
+            Zhang, Jingjing and Wang, Chaofan and Wu, Kai and Qi, Mengnan and
+            Cai, Kai and Gu, Xiaodong and Liu, Qi and Zheng, Zilong},
+  year = {2026},
+  eprint = {2611.07624},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2611.07624}
+}</code></pre>
+            <p class="ah-note" id="copy-status" role="status"></p>
           </section>
         </main>
         <footer class="ah-footer">
@@ -123,5 +169,20 @@
       </div>
     </div>
   </div>
+  <script type="module">
+    const copyButton = document.getElementById('copy-citation');
+    const entry = document.getElementById('citation-entry');
+    const status = document.getElementById('copy-status');
+    copyButton.hidden = false;
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(entry.textContent);
+        status.textContent = 'BibTeX copied.';
+      } catch {
+        window.getSelection().selectAllChildren(entry);
+        status.textContent = 'Citation selected. Use your device’s copy command.';
+      }
+    });
+  </script>
 </body>
 </html>

@@ -66,3 +66,64 @@
 .study-findings li + li {
   margin-top: 7px;
 }
+
+.age-results {
+  width: 100%;
+  margin-block: 18px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.age-results caption {
+  padding-bottom: 8px;
+  color: var(--ah-muted);
+  text-align: left;
+}
+
+.age-results th,
+.age-results td {
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--ah-rule);
+  text-align: right;
+}
+
+.age-results th:first-child {
+  padding-left: 0;
+  text-align: left;
+}
+
+.age-results th {
+  font-weight: 500;
+}
+
+.age-results th span {
+  display: block;
+  color: var(--ah-muted);
+  font-weight: 400;
+}
+
+.age-results td {
+  white-space: nowrap;
+}
+
+#bibtex .ah-bibtex-heading,
+.citation-actions {
+  flex-wrap: wrap;
+}
+
+.citation-actions {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 13px;
+}
+
+#bibtex button[hidden] {
+  display: none;
+}
+
+#bibtex pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
