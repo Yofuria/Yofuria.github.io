@@ -4,6 +4,15 @@ document.addEventListener('DOMContentLoaded', function() {
         currentYear.textContent = new Date().getFullYear();
     }
 
+    const topbar = document.querySelector('.ah-topbar');
+    if (topbar && 'ResizeObserver' in window) {
+        // Keep anchor targets visible when navigation links wrap or text is enlarged.
+        const topbarObserver = new ResizeObserver(() => {
+            document.documentElement.style.setProperty('--ah-topbar-height', `${topbar.offsetHeight}px`);
+        });
+        topbarObserver.observe(topbar, { box: 'border-box' });
+    }
+
     setupMobileMenu();
     setupSmoothScroll();
     setupNavHighlight();

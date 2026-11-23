@@ -1,6 +1,7 @@
 :root {
     color-scheme: light;
     scroll-behavior: smooth;
+    scroll-padding-top: var(--ah-topbar-height, 4rem);
     --ah-paper: #fefdfc;
     --ah-surface: #f6f5f4;
     --ah-ink: #2d2b29;
@@ -21,7 +22,7 @@
     --ah-gap: 36px;
     box-sizing: border-box;
     width: 100%;
-    padding: 26px 52px 32px;
+    padding: 0 52px 32px;
     background: var(--ah-paper);
     color: var(--ah-ink);
     font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -42,7 +43,19 @@
   #academic-homepage .ah-page h3 { font-size: 16px; line-height: 1.6; }
   #academic-homepage .ah-page p { margin: 8px 0; font-size: inherit; line-height: inherit; }
   #academic-homepage .ah-page strong { color: var(--ah-ink); font-weight: 500; }
-  #academic-homepage .ah-topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding-bottom: 23px; }
+  #academic-homepage .ah-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 12px;
+    margin-bottom: 24px;
+    background: var(--ah-paper);
+    border-bottom: 1px solid var(--ah-rule);
+  }
   #academic-homepage .ah-nav { display: flex; align-items: center; min-width: 0; min-height: 34px; gap: 0 24px; flex-wrap: wrap; font-size: 13px; }
   #academic-homepage .ah-nav a { color: var(--ah-muted); }
   #academic-homepage .ah-theme-toggle:not([hidden]) {
@@ -107,11 +120,11 @@
   #academic-homepage .ah-footer { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--ah-rule); color: var(--ah-muted); font-size: 12px; }
   #academic-homepage .ah-page [id] { scroll-margin-top: 20px; }
   @media (max-width: 780px) {
-    #academic-homepage .ah-page { padding: 24px 32px 28px; }
+    #academic-homepage .ah-page { padding: 0 32px 28px; }
   }
   @media (max-width: 600px) {
-    #academic-homepage .ah-page { padding: 22px 22px 26px; }
-    #academic-homepage .ah-topbar { gap: 12px; padding-bottom: 22px; }
+    #academic-homepage .ah-page { padding: 0 22px 26px; }
+    #academic-homepage .ah-topbar { gap: 12px; padding-block: 10px; margin-bottom: 23px; }
     #academic-homepage .ah-nav { gap: 0 16px; }
     #academic-homepage .ah-intro { display: grid; grid-template-columns: minmax(0, 1fr) 112px; gap: 0 16px; }
     #academic-homepage .ah-intro-copy { display: contents; }
@@ -150,7 +163,7 @@
   }
 body { margin: 0; background: var(--ah-paper); color: var(--ah-ink); }
 .skip-link { position: absolute; left: 1rem; top: -4rem; padding: 0.5rem 1rem; background: var(--ah-surface); color: var(--ah-link); }
-.skip-link:focus { top: 0.25rem; z-index: 1; }
+.skip-link:focus { top: 0.25rem; z-index: 2; }
 #academic-homepage .pub-list-ul { list-style: none; margin: 0; padding: 0; }
 #academic-homepage .pub-list-item { padding: 17px 0; border-bottom: 1px solid var(--ah-rule); }
 #academic-homepage .pub-title-text { color: var(--ah-ink); font-size: 16px; font-weight: 500; line-height: 1.6; }
