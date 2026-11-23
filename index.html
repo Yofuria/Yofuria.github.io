@@ -17,7 +17,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="stylesheet" href="homepage.css?v=20261028-metrics">
+    <script src="theme.js?v=20261123"></script>
+    <link rel="stylesheet" href="homepage.css?v=20261123">
     <script src="script.js?v=20261028-scholars-label" defer></script>
 </head>
 <body class="homepage-simple">
@@ -25,12 +26,15 @@
 <div id="academic-homepage">
   <div class="ah-page">
     <div class="ah-container">
-      <nav class="ah-nav" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#research-thrust">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="ah-topbar">
+        <nav class="ah-nav" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#research-thrust">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button type="button" class="ah-theme-toggle" hidden><span>Night</span></button>
+      </div>
       <header class="ah-intro" id="homepage">
         <div class="ah-intro-copy">
           <h1>Xiaobo Wang <span lang="zh">王晓博</span></h1>

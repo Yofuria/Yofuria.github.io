@@ -15,7 +15,8 @@
     </script>
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    <link rel="stylesheet" href="../homepage.css?v=20261028-metrics">
+    <script src="../theme.js?v=20261123"></script>
+    <link rel="stylesheet" href="../homepage.css?v=20261123">
     <script src="../script.js?v=20261028-scholars-label" defer></script>
 </head>
 <body class="academic-simple">
@@ -23,11 +24,14 @@
   <div id="academic-homepage">
     <div class="ah-page">
       <div class="ah-container">
-        <nav class="ah-nav" aria-label="Main navigation">
-          <a href="../index.html">Home</a>
-          <a href="all-publications.html">Publications</a>
-          <a href="all-news.html" aria-current="page">News</a>
-        </nav>
+        <div class="ah-topbar">
+          <nav class="ah-nav" aria-label="Main navigation">
+            <a href="../index.html">Home</a>
+            <a href="all-publications.html">Publications</a>
+            <a href="all-news.html" aria-current="page">News</a>
+          </nav>
+          <button type="button" class="ah-theme-toggle" hidden><span>Night</span></button>
+        </div>
         <main id="all-news">
           <header class="ah-archive-header"><h1>All News &amp; Updates</h1></header>
           <div id="all-news-container"><p class="loading-message" role="status">Loading news…</p></div>

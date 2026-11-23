@@ -15,7 +15,8 @@
     </script>
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-    <link rel="stylesheet" href="../homepage.css?v=20261028-metrics">
+    <script src="../theme.js?v=20261123"></script>
+    <link rel="stylesheet" href="../homepage.css?v=20261123">
     <script src="../script.js?v=20261028-scholars-label" defer></script>
 </head>
 <body class="academic-simple">
@@ -23,11 +24,14 @@
   <div id="academic-homepage">
     <div class="ah-page">
       <div class="ah-container">
-        <nav class="ah-nav" aria-label="Main navigation">
-          <a href="../index.html">Home</a>
-          <a href="all-publications.html" aria-current="page">Publications</a>
-          <a href="all-news.html">News</a>
-        </nav>
+        <div class="ah-topbar">
+          <nav class="ah-nav" aria-label="Main navigation">
+            <a href="../index.html">Home</a>
+            <a href="all-publications.html" aria-current="page">Publications</a>
+            <a href="all-news.html">News</a>
+          </nav>
+          <button type="button" class="ah-theme-toggle" hidden><span>Night</span></button>
+        </div>
         <main id="all-publications">
           <header class="ah-archive-header"><h1>All Publications <span id="filter-indicator"></span></h1></header>
           <nav class="ah-filter-nav" aria-label="Publication filters">
