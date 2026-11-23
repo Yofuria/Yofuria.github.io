@@ -1,12 +1,12 @@
 :root {
     color-scheme: light;
     scroll-behavior: smooth;
-    --ah-paper: #fbf7f0;
-    --ah-surface: #f2eadf;
-    --ah-ink: #302923;
-    --ah-muted: #675c51;
-    --ah-rule: #dbd0c2;
-    --ah-link: #935832;
+    --ah-paper: #fefdfc;
+    --ah-surface: #f6f5f4;
+    --ah-ink: #2d2b29;
+    --ah-muted: #625e5b;
+    --ah-rule: #dfddda;
+    --ah-link: #805942;
 }
 :root[data-theme="dark"] {
     color-scheme: dark;
