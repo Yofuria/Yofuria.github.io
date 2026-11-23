@@ -1,45 +1,26 @@
 [
   {
     "date": "2026.10",
-    "content": "RSIHub (co-first author) accepted at <strong>First Workshop on Meta Agents: Managing Agents that Manage Agents (NeurIPS 2026)</strong>.",
-    "links": [
-      { "text": "arXiv", "url": "https://arxiv.org/abs/2610.32253" },
-      { "text": "Workshop", "url": "https://meta-agents-workshop.github.io/" }
-    ]
+    "content": "Our agent evolution paper <a href=\"https://arxiv.org/abs/2610.32253\">RSIHub</a> was accepted to the <strong><a href=\"https://meta-agents-workshop.github.io/\">First Workshop on Meta Agents: Managing Agents that Manage Agents</a> (NeurIPS 2026)</strong>! I’m a co-first author."
   },
   {
     "date": "2026.01",
-    "content": "PoliCon accepted at <strong>ICLR 2026</strong>.",
-    "links": [
-      { "text": "arXiv", "url": "https://arxiv.org/abs/2505.19558" }
-    ]
+    "content": "We built <a href=\"https://arxiv.org/abs/2505.19558\">PoliCon</a> to test whether LLMs can draft resolutions that win cross-party support. The paper was accepted to <strong>ICLR 2026</strong>."
   },
   {
     "date": "2025.12",
-    "content": "The AI Hippocampus accepted by <strong>TMLR</strong>.",
-    "links": [
-      { "text": "arXiv", "url": "https://arxiv.org/abs/2601.09113" }
-    ]
+    "content": "<strong>TMLR</strong> accepted <a href=\"https://arxiv.org/abs/2601.09113\">The AI Hippocampus</a>, our survey of how language models and agents store and use memories."
   },
   {
     "date": "2025.08",
-    "content": "UAPO (first author) accepted at <strong>EMNLP 2025</strong>.",
-    "links": [
-      { "text": "arXiv", "url": "https://arxiv.org/abs/2509.10515" }
-    ]
+    "content": "My first-author paper <a href=\"https://arxiv.org/abs/2509.10515\">UAPO</a> shows how to learn from unpaired preference data. It was accepted to <strong>EMNLP 2025</strong>!"
   },
   {
     "date": "2025.05",
-    "content": "ReflectEvo accepted at <strong>ACL 2025</strong>.",
-    "links": [
-      { "text": "arXiv", "url": "https://arxiv.org/abs/2505.16475" }
-    ]
+    "content": "Our <a href=\"https://arxiv.org/abs/2505.16475\">ReflectEvo</a> paper on how small language models learn from their own reflections was accepted to <strong>ACL 2025</strong>."
   },
   {
     "date": "2025.01",
-    "content": "ICE accepted at <strong>ICLR 2025</strong>.",
-    "links": [
-      { "text": "arXiv", "url": "https://arxiv.org/abs/2406.11194" }
-    ]
+    "content": "<strong>ICLR 2025</strong> accepted <a href=\"https://arxiv.org/abs/2406.11194\">ICE</a>, our method for helping language models retain new facts after the context is removed."
   }
 ]
