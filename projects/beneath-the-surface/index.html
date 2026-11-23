@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beneath the Surface: What We Overlook When We Talk About Agent Evolution</title>
+  <meta name="description" content="A task-by-task study of what evolving language-model agents gain, what they lose, and how EvoAudit uses those observations to improve the next generation.">
+  <link rel="canonical" href="https://yofuria.github.io/projects/beneath-the-surface/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Beneath the Surface: What We Overlook When We Talk About Agent Evolution">
+  <meta property="og:description" content="All 16 evolved agents solved new tasks and lost coverage on others. We trace these changes across banking and coding tasks.">
+  <meta property="og:url" content="https://yofuria.github.io/projects/beneath-the-surface/">
+  <meta property="og:image" content="https://yofuria.github.io/projects/beneath-the-surface/images/study-overview.png">
+  <meta property="og:image:alt" content="The agent evolution loop and the three research questions examined in the paper">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+  <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+  <script src="../../theme.js?v=20261123"></script>
+  <link rel="stylesheet" href="../../homepage.css?v=20261123">
+  <link rel="stylesheet" href="project.css">
+  <script src="../../script.js?v=20261028-scholars-label" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0J0FVEM5MD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-0J0FVEM5MD');
+  </script>
+</head>
+<body class="academic-simple">
+  <a class="skip-link" href="#paper">Skip to content</a>
+  <div id="academic-homepage">
+    <div class="ah-page">
+      <div class="ah-container">
+        <div class="ah-topbar">
+          <nav class="ah-nav" aria-label="Main navigation">
+            <a href="../../index.html">Home</a>
+            <a href="../../pages/all-publications.html">Publications</a>
+            <a href="../../pages/all-news.html">News</a>
+          </nav>
+          <button type="button" class="ah-theme-toggle" hidden><span>Night</span></button>
+        </div>
+        <main id="paper">
+          <header class="ah-paper-header">
+            <p class="ah-paper-venue">Under Review · arXiv 2026</p>
+            <h1>Beneath the Surface: What We Overlook When We Talk About Agent Evolution</h1>
+            <p class="ah-paper-authors">
+              <span><a class="ah-paper-author" href="../../index.html">Xiaobo Wang</a><sup>1,4,*</sup></span>,
+              <span>Zimu Wang<sup>2,*</sup></span>,
+              <span>Siyu Ye<sup>3,*</sup></span>,
+              <span>Jiaqi Li<sup>4,*</sup></span>,
+              <span>Min Tang<sup>1</sup></span>,
+              <span>Jun Bai<sup>4</sup></span>,
+              <span>Yuling Shi<sup>5</sup></span>,
+              <span>Ruobing Wang<sup>3</sup></span>,
+              <span>Jingjing Zhang<sup>2</sup></span>,
+              <span>Chaofan Wang<sup>5</sup></span>,
+              <span>Kai Wu<sup>3</sup></span>,
+              <span>Mengnan Qi<sup>3</sup></span>,
+              <span>Kai Cai<sup>3</sup></span>,
+              <span>Xiaodong Gu<sup>5,†</sup></span>,
+              <span>Qi Liu<sup>1,†</sup></span>,
+              <span>Zilong Zheng<sup>4,†</sup></span>
+            </p>
+            <p class="ah-paper-affiliation">
+              <sup>1</sup> University of Science and Technology of China ·
+              <sup>2</sup> University of California, Berkeley ·
+              <sup>3</sup> Simple Agent Lab ·
+              <sup>4</sup> Beijing Institute for General Artificial Intelligence ·
+              <sup>5</sup> Shanghai Jiaotong University
+            </p>
+            <p class="ah-note">* Equal contribution · † Corresponding authors</p>
+            <div class="ah-resources">
+              <a href="https://arxiv.org/abs/2611.07624">arXiv</a>
+              <a href="https://arxiv.org/pdf/2611.07624">PDF</a>
+              <a href="https://github.com/simple-agent-lab/RSIHub">Code (RSIHub)</a>
+              <a href="citation.bib" download>BibTeX</a>
+            </div>
+          </header>
+
+          <section class="ah-section">
+            <h2>What can a higher score hide?</h2>
+            <p>Consider a banking agent built with MiniSWE. After HyperAgents evolved its harness, the agent’s average success rate on τ³-Banking rose from 27.4% to 32.6%. Looking at which tasks it solved tells a fuller story.</p>
+            <dl class="coverage-example">
+              <div><dt>Average success gain</dt><dd>+5.2 <abbr title="percentage points">pp</abbr></dd></div>
+              <div><dt>Newly covered tasks</dt><dd>13</dd></div>
+              <div><dt>Previously covered tasks lost</dt><dd>10</dd></div>
+            </dl>
+            <p>We count a task as covered when the agent solves it at least once in eight attempts. All 16 evolved agents in our comparison gained coverage on some tasks and lost it on others. <a href="https://arxiv.org/html/2611.07624v1#S4.F2">See the task-level results.</a></p>
+          </section>
+
+          <section class="ah-section">
+            <h2>How we tracked change</h2>
+            <p>The harness is the code and instructions around the language model. We kept the model weights fixed and tested four evolution methods (AHE, HyperAgents, A-Evolve, and GEPA). We ran each method on MiniSWE and Codex, using τ³-Banking for banking tasks and Terminal-Bench 2 for coding tasks.</p>
+            <figure class="ah-paper-figure">
+              <a href="images/study-overview.png" aria-label="Open the full-size study overview">
+                <img src="images/study-overview.png" width="1772" height="768" alt="Agent harness evolution loop alongside three questions about task-level changes, transfer, and the mechanisms that produce and preserve gains.">
+              </a>
+              <figcaption>We follow a change from its first evaluation through transfer to new tasks, then examine how the next version of the harness is chosen. <a href="https://arxiv.org/html/2611.07624v1#S1.F1">Figure 1 in the paper.</a></figcaption>
+            </figure>
+            <ul class="study-findings">
+              <li><strong>Cost.</strong> Eight of the 11 agents that became more reliable also cost more per attempt. An agent could still cost less to deploy if it reached the same coverage in fewer attempts.</li>
+              <li><strong>Transfer.</strong> When the banking agents moved to τ²-bench, seven of eight covered fewer tasks than their starting versions. When the coding agents moved to DeepSWE v1.1, seven of eight covered more.</li>
+              <li><strong>Parent selection.</strong> In each of four candidate pools, the agent with the highest starting score and the one whose descendants improved most on average were different agents.</li>
+            </ul>
+          </section>
+
+          <section class="ah-section">
+            <h2>From EvoAudit to Audit-Guided Evolution</h2>
+            <p>EvoAudit uses archived runs to revise how an evolution method selects parents, diagnoses behavior, changes the harness, and decides which revisions to keep. One revision changes how ties are broken. When parents share the highest validation score and comparable task records exist, it favors the parent with fewer regressions from the starting agent.</p>
+            <figure class="ah-paper-figure">
+              <a href="images/evoaudit.png" aria-label="Open the full-size EvoAudit workflow">
+                <img src="images/evoaudit.png" width="1832" height="420" loading="lazy" alt="Six EvoAudit stages use archived runs to diagnose behavior, revise operators, validate the changes, and decide which revisions to admit.">
+              </a>
+              <figcaption>EvoAudit tests proposed changes against recorded evidence and regression checks before admitting a revision. <a href="https://arxiv.org/html/2611.07624v1#S7.F4">Figure 4 in the paper.</a></figcaption>
+            </figure>
+            <p>We applied all four revisions to A-Evolve to create <strong>Audit-Guided Evolution (AGE)</strong>. Across both harnesses and both benchmarks, AGE improved average success and task coverage over A-Evolve. On Terminal-Bench 2 with Codex, it reached 73.5% average success and covered 92.1% of tasks in eight attempts. <a href="https://arxiv.org/html/2611.07624v1#S7.T10">See the comparison in Table 10.</a></p>
+          </section>
+        </main>
+        <footer class="ah-footer">
+          <p>Figures by Wang et al., reproduced under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+          <p>© <span id="current-year">2026</span> Xiaobo Wang · <a href="../../index.html">Homepage</a></p>
+        </footer>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

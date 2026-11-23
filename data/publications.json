@@ -60,6 +60,7 @@
     "year": "2026",
     "tags": [
       { "text": "Paper", "link": "https://arxiv.org/abs/2611.07624" },
+      { "text": "Project Page", "link": "projects/beneath-the-surface/" },
       { "text": "Code", "link": "https://github.com/simple-agent-lab/RSIHub" }
     ]
   },
