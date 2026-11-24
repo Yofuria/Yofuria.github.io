@@ -19,54 +19,69 @@ document.addEventListener('DOMContentLoaded', function() {
     makeAllLinksOpenInNewTab();
     setupLinkObserver();
 
-    loadProfileMetrics();
+    setupProfileMetrics();
     loadNews();
     loadHonors();
     loadPublications();
 });
 
-async function loadProfileMetrics() {
-    const fields = document.querySelectorAll('[data-profile-metric]');
-    if (!fields.length) return;
+function setupProfileMetrics() {
+    const links = document.querySelectorAll('[data-metric-link]');
+    if (!links.length) return;
 
-    const sources = [
-        getDataPath('profile-metrics.json'),
-        'https://raw.githubusercontent.com/Yofuria/Yofuria/main/metrics/stats.json'
-    ];
     const citationProfiles = new Set([
         'https://scholar.google.com/citations?user=GNO0HzAAAAAJ',
         'https://www.semanticscholar.org/author/Xiaobo-Wang/2297250786'
     ]);
-    for (const source of sources) {
+    let activeRequest;
+
+    async function refresh() {
         const controller = new AbortController();
+        activeRequest = controller;
         const timeout = setTimeout(() => controller.abort(), 8000);
         try {
-            const response = await fetch(source, { signal: controller.signal });
+            const source = new URL('https://raw.githubusercontent.com/Yofuria/Yofuria/main/metrics/stats.json');
+            source.searchParams.set('t', Date.now());
+            const response = await fetch(source, { cache: 'no-store', signal: controller.signal });
             const stats = await handleJsonResponse(response);
-            fields.forEach(field => {
-                const key = field.dataset.profileMetric;
-                const metric = stats[key];
-                if (!metric || !Number.isSafeInteger(metric.value) || metric.value < 0) return;
+            if (controller.signal.aborted) return;
+
+            links.forEach(link => {
+                const key = link.dataset.metricLink;
+                const metric = stats?.[key];
+                if (!Number.isSafeInteger(metric?.value) || metric.value < 0) return;
                 if (key === 'citations' && !citationProfiles.has(metric.url)) return;
-                field.textContent = metric.value.toLocaleString('en-US');
-                const link = document.querySelector(`[data-metric-link="${key}"]`);
-                const date = new Date(metric.updatedAt);
+                if (key === 'github' && !Array.isArray(metric.repositories)) return;
+
+                const date = new Date(metric.updatedAt || NaN);
                 const updated = Number.isNaN(date.getTime()) ? '' : ` Last successful update: ${date.toISOString().slice(0, 10)} (UTC).`;
                 const description = key === 'citations'
                     ? 'Scholar citations.'
                     : `Total stars across ${metric.repositories.length} listed open-source projects, including organization repositories. Each repository is counted once.`;
-                if (link) {
-                    link.title = description + updated;
-                    if (key === 'citations') link.href = metric.url;
-                }
+                link.title = description + updated;
+                if (key === 'citations') link.href = metric.url;
+                link.querySelector('[data-profile-metric]').textContent = metric.value.toLocaleString('en-US');
+                link.hidden = false;
             });
         } catch (error) {
-            // The embedded snapshot remains visible if either source is unavailable.
-            console.warn('Could not refresh profile metrics:', source, error.name);
+            console.warn('Could not refresh profile metrics:', error.name);
         } finally {
             clearTimeout(timeout);
         }
     }
+
+    // Browsers can restore the same DOM when a visitor goes back or forward.
+    window.addEventListener('pagehide', () => {
+        activeRequest.abort();
+        links.forEach(link => {
+            link.hidden = true;
+            link.querySelector('[data-profile-metric]').textContent = '';
+        });
+    });
+    window.addEventListener('pageshow', event => {
+        if (event.persisted) refresh();
+    });
+    refresh();
 }
 
 function setupMobileMenu() {

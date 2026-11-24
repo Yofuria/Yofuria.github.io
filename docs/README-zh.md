@@ -18,7 +18,7 @@
 | `script.js` | 共用的数据加载、论文筛选、链接处理和年份更新 |
 | `assets/`、`images/` | 头像、机构 logo、论文资源和网站图标 |
 
-论文和动态的内容统一在 JSON 文件中维护，首页及完整列表页会同步读取。动态按时间从新到旧排列。修改共用样式或脚本时，同步更新四个 HTML 文件引用中的版本号，让各页面刷新缓存。
+论文和动态的内容统一在 JSON 文件中维护，首页及完整列表页会同步读取。动态按时间从新到旧排列。修改共用样式或脚本时，同步更新所有引用该文件的 HTML 页面中的版本号。
 
 ## 本地预览
 
@@ -40,7 +40,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 
 ## 引用与 Star 标签
 
-个人链接下方的小标签与 [GitHub 主页](https://github.com/Yofuria/Yofuria) 共用一份数据。GitHub 主页仓库每天北京时间 00:00、12:00（UTC 16:00、04:00）运行。每次更新都比较 Google Scholar 缓存和 Semantic Scholar 作者 API 的引用次数，取较大值显示为 `Scholar citations`，不在标签上标注来源。点击标签跳转到对应的 Scholar 页面；两者相同时优先 Google Scholar。网站优先显示 `data/profile-metrics.json` 中的快照，再读取共享 JSON 同步刷新数字和跳转地址。某个 Scholar 取数失败时保留该来源上次有效的数据，不写成 0。
+个人链接下方的小标签与 [GitHub 主页](https://github.com/Yofuria/Yofuria) 共用一份数据。GitHub 主页仓库每天北京时间 00:00、12:00（UTC 16:00、04:00）运行。每次更新都比较 Google Scholar 缓存和 Semantic Scholar 作者 API 的引用次数，取较大值显示为 `Scholar citations`，不在标签上标注来源。点击标签跳转到对应的 Scholar 页面；两者相同时优先 Google Scholar。每次打开、刷新或通过浏览器前进后退返回个人主页时，页面都会重新请求共享 JSON。引用数和项目星数各自在本次请求取得有效数据后才显示。某个 Scholar 取数失败时保留该来源上次有效的数据，不写成 0。
 
 `Project stars` 汇总两处主页列出的开源项目，包含组织仓库；按 GitHub 稳定仓库 ID 去重。点击标签跳转到 [GitHub 主页](https://github.com/Yofuria)。维护时可查看[统计范围和各项目明细](https://github.com/Yofuria/Yofuria/blob/main/metrics/README.md)；增删项目时，在 GitHub 主页仓库修改 `metrics/config.json`。某个来源获取失败时，保留其上次成功的数值和时间，不写成 0。
 

@@ -18,7 +18,7 @@ A static academic website with a single-column layout, built with HTML, CSS, Jav
 | `script.js` | Shared JSON loading, publication filters, links, and current year |
 | `assets/`, `images/` | Profile image, institution logos, publication assets, and favicons |
 
-Keep publication and news content in the JSON files so that the homepage and archives stay in sync. Keep news in newest-first order. Update the shared stylesheet or script version in all four HTML files when those assets change; this refreshes cached copies on every page.
+Keep publication and news content in the JSON files so that the homepage and archives stay in sync. Keep news in newest-first order. When a shared stylesheet or script changes, update its version in every HTML file that loads it.
 
 ## Preview locally
 
@@ -40,7 +40,7 @@ Commit the changed files and push to `main`. GitHub Pages deploys automatically.
 
 ## Profile metrics
 
-The small labels under the profile links share their data with the [GitHub profile](https://github.com/Yofuria/Yofuria). The profile repository generates `metrics/stats.json` and light/dark SVG badges twice daily at 00:00 and 12:00 China time (16:00 and 04:00 UTC). On every update it compares the existing Google Scholar cache with the Semantic Scholar author API and displays the larger count as **Scholar citations**. The label links to the corresponding Scholar profile; ties prefer Google Scholar. The website reads the selected count and destination from the shared JSON and retains an embedded snapshot in `data/profile-metrics.json` if the live source is unavailable.
+The small labels under the profile links share their data with the [GitHub profile](https://github.com/Yofuria/Yofuria). The profile repository generates `metrics/stats.json` and light/dark SVG badges twice daily at 00:00 and 12:00 China time (16:00 and 04:00 UTC). On every update it compares the existing Google Scholar cache with the Semantic Scholar author API and displays the larger count as **Scholar citations**. The label links to the corresponding Scholar profile; ties prefer Google Scholar. Each visit, reload, or return via browser history makes a fresh request for the shared JSON. Each badge appears only after that request returns valid data for it.
 
 **Project stars** is the sum across the listed open-source projects, including organization repositories. Repositories are deduplicated by their stable GitHub ID. Clicking the label opens the [GitHub profile](https://github.com/Yofuria). The [scope and per-project counts](https://github.com/Yofuria/Yofuria/blob/main/metrics/README.md) remain available for maintenance; edit `metrics/config.json` in the profile repository when adding or removing projects. A failed source retains its last successful value and timestamp.
 

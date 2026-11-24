@@ -87,8 +87,8 @@
   #academic-homepage .ah-page .ah-role { margin: 10px 0 1px; font-size: 14px; }
   #academic-homepage .ah-page .ah-affiliation { margin: 0; font-size: 14px; color: var(--ah-muted); }
   #academic-homepage .ah-profile-links { display: flex; flex-wrap: wrap; gap: 5px 20px; margin-top: 12px; font-size: 13px; }
-  #academic-homepage .ah-profile-metrics { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
-  #academic-homepage .ah-page a.ah-profile-metric { display: inline-flex; align-items: center; gap: 10px; min-height: 26px; padding: 3px 10px; border: 1px solid var(--ah-rule); border-radius: 4px; color: var(--ah-muted); font-size: 12px; line-height: 18px; white-space: nowrap; }
+  #academic-homepage .ah-profile-metrics { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 26px; margin-top: 12px; }
+  #academic-homepage .ah-page a.ah-profile-metric:not([hidden]) { display: inline-flex; align-items: center; gap: 10px; min-height: 26px; padding: 3px 10px; border: 1px solid var(--ah-rule); border-radius: 4px; color: var(--ah-muted); font-size: 12px; line-height: 18px; white-space: nowrap; }
   #academic-homepage .ah-page a.ah-profile-metric:hover { border-color: var(--ah-muted); text-decoration: none; }
   #academic-homepage .ah-profile-metric:focus-visible { outline: 2px solid var(--ah-link); outline-offset: 3px; }
   #academic-homepage .ah-profile-metric strong { font-family: "SFMono-Regular", Consolas, monospace; font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 600; }
